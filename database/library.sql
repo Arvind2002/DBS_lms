@@ -48,5 +48,4 @@ create table reservations(
     PRIMARY KEY(roomID, hour)
 );
 
-/*INSERT INTO departments VALUES ('ADMIN', 'Administration', NULL, NULL);
-UPDATE departments SET managerid = 1 WHERE code = 'ADMIN';*/
+insert into books values(1, 'hary poter', 'jkr', 'penguin');
