@@ -12,8 +12,18 @@ const db = mysql.createConnection({
     password:'',
     database:'library',
 });
+console.log("connection created");
 
-app.post('')
+app.get("/books", (req, res) => {
+    db.query("SELECT * FROM books", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
+
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");
