@@ -21,7 +21,6 @@ app.get("/", (req, res) => {
   });
 });
 
-
 app.get("/books", (req, res) => {
   db.query("SELECT * FROM books", (err, result) => {
     if (err) {
