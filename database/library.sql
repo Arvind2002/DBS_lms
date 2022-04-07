@@ -10,6 +10,7 @@ create table books(
 
 create table acType(
     typeID int PRIMARY KEY AUTO_INCREMENT,
+    typeName varchar(10),
     cost int,
     numBooks int,
     duration int,

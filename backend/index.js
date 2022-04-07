@@ -20,12 +20,23 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", (req, res) => {
-  const sqlInsert = "INSERT INTO books VALUES (2, 'alex rider', 'anthony horowitz', 'penguin');"
-  db.query(sqlInsert, (err, result) => {
-    res.send("hello world");
+app.post("/createAcc", (req, res) => {
+    const mem_name = req.body.mem_name;
+    const type = req.body.type;
+  
+    db.query(
+      "INSERT INTO members (name, typeID) VALUES (?,(select typeID from acType where typeName = ?))",
+      [mem_name, type],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("Values Inserted");
+        }
+      }
+    );
   });
-});
+  
 
 app.get("/books", (req, res) => {
   db.query("SELECT * FROM books", (err, result) => {
