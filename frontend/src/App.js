@@ -7,12 +7,13 @@ import React, { useEffect, useState } from "react"
 import {BasicTable} from './components/BasicTable'
 import {acc_columns} from './components/acc-columns'
 import {book_columns} from './components/book-columns'
-import {DATA} from './components/table-data.json'
+//import {DATA} from './components/table-data.json'
 
 function App() {
   const [accList,setAccList] = useState("");
   const [mem_name, setMemName] = useState("");
   const [type, setType] = useState("");
+  const [mem_search_ID, setMemSearch] = useState(0); 
  
   const addMember = () => {
     console.log("In add member")
@@ -26,8 +27,16 @@ function App() {
 
 
  const getMembers = () =>{
-    Axios.get("http://localhost:3001/account").then((response) => {
+    Axios.get("http://localhost:3001/members").then((response) => {
       setAccList(response.data);
+    });
+  }
+  const searchMembers = () =>{
+    console.log(mem_search_ID);
+    Axios.get("http://localhost:3001/members_search",
+    {mem_search_ID: mem_search_ID,
+    }).then((response) => {
+      setMemSearch(response.data);
     });
   }
 
@@ -68,6 +77,21 @@ function App() {
       <br></br>
       <div className = "Books">
         <button onClick={getMembers}>Show Members</button>
+      </div>
+      
+      <div>
+        <br></br>
+        <h4>Search for member</h4>
+        <label>ID:</label>
+        <input
+          type="number"
+          onChange={(event) => {
+            setMemSearch(event.target.value);
+          }}
+        />
+      </div>
+      <div className = "Books">
+        <button onClick={searchMembers}>Search Members</button>
       </div>
     </div>
   );

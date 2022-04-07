@@ -37,8 +37,20 @@ app.post("/createAcc", (req, res) => {
   });
   
 
-app.get("/books", (req, res) => {
-  db.query("SELECT * FROM books", (err, result) => {
+app.get("/members", (req, res) => {
+  db.query("SELECT memID,memName,typeName FROM members,acType where acType.typeID = members.typeID", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/members_search", (req, res) => {
+  const mem_search_ID = req.body.mem_search_ID;
+  console.log(mem_search_ID);
+  db.query("SELECT memID,memName,typeName FROM members,acType where acType.typeID = members.typeID and memID = ?",[mem_search_ID], (err, result) => {
     if (err) {
       console.log(err);
     } else {
