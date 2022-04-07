@@ -16,7 +16,7 @@ function App() {
   /////////////////////////////////
   const addMember = () => {
     console.log("In addMember() function")
-    Axios.post("http://localhost:3001/createAcc", {
+    Axios.post("http://localhost:3001/create_acc", {
       memName: memName,
       type: type,
     }).then(() => {
@@ -25,6 +25,7 @@ function App() {
   };
 
  const getMembers = () =>{
+   console.log("In getMembers() function")
     Axios.get("http://localhost:3001/show_members").then((response) => {
       setMemList(response.data);
     });
@@ -43,7 +44,7 @@ function App() {
   <BasicTable columns={???} data={???}/>
   ) in between some divs to make the table work*/
 
-  const data = React.useMemo(() => memList);
+  const memData = React.useMemo(() => memList);
   return (
     <div className="App">
       <h1>Library Management System</h1>
@@ -74,7 +75,7 @@ function App() {
         <br></br>
         <button onClick={getMembers}>Show Members</button>
         <br></br>
-        <BasicTable columns={acc_columns} data={memList}/>
+        <BasicTable columns={acc_columns} data={memData}/>
 
       </div>
     </div>
