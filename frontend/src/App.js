@@ -1,3 +1,5 @@
+//need to check for valid account type
+
 import './App.css';
 import Axios from 'axios'
 import React, { useEffect, useState } from "react";
@@ -8,6 +10,7 @@ function App() {
   const [type, setType] = useState("");
  
   const addMember = () => {
+    console.log("In add member")
     Axios.post("http://localhost:3001/createAcc", {
       mem_name: mem_name,
       type: type,
@@ -38,9 +41,9 @@ function App() {
              <br></br>
              <label>Account Type:</label>
              <p>
-               D - Diamond<br></br>
-               G - Gold<br></br>
-               S - Silver<br></br>
+               Diamond<br></br>
+               Gold<br></br>
+               Silver<br></br>
              </p>
         <input
           type="text"

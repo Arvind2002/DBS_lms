@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require('mysql2');
 const cors = require("cors")
@@ -25,12 +24,12 @@ app.post("/createAcc", (req, res) => {
     const type = req.body.type;
   
     db.query(
-      "INSERT INTO members (name, typeID) VALUES (?,(select typeID from acType where typeName = ?))",
+      "INSERT INTO members (memName, typeID) select ?,typeID from acType where typeName = ?",
       [mem_name, type],
       (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
+          if (err) {
+            console.log(err);
+            } else {
           res.send("Values Inserted");
         }
       }

@@ -50,3 +50,7 @@ create table reservations(
 );
 
 insert into books values(1, 'hary poter', 'jkr', 'penguin');
+
+insert into acType values(1,'Diamond',1000,100,30,10);
+insert into acType values(2,'Gold',800,80,20,20);
+insert into acType values(3,'Silver',600,60,10,30);
