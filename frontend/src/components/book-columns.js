@@ -1,4 +1,4 @@
-export const COLUMNS = [
+export const book_columns = [
     {
         Header: 'ID',
         accessor: 'bookID'

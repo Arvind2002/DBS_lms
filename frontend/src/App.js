@@ -3,6 +3,7 @@
 import './App.css';
 import Axios from 'axios'
 import React, { useEffect, useState } from "react";
+import {BasicTable} from './components/BasicTable'
 
 function App() {
   //const [bookList,setBookList] = useState("");
@@ -25,6 +26,8 @@ function App() {
       console.log(response);
     });
   }*/
+
+  /*add <BasicTable /> in between some divs to make the table work*/
 
 
   return (
@@ -53,7 +56,6 @@ function App() {
         />
       </div>
       <div className = "Books">
-
         <button onClick={addMember}>Add Member</button>
       </div>
 
