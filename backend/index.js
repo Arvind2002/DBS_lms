@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const cors = require("cors")
 
 app.use(cors());
@@ -13,32 +13,32 @@ const db = mysql.createPool({
   password: 'password',
   database: 'library',
 });
-console.log("connection created"); 
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.post("/createAcc", (req, res) => {
-    const mem_name = req.body.mem_name;
-    const type = req.body.type;
-  
-    db.query(
-      "INSERT INTO members (memName, typeID) select ?,typeID from acType where typeName = ?",
-      [mem_name, type],
-      (err, result) => {
-          if (err) {
-            console.log(err);
-            } else {
-          res.send("Values Inserted");
-        }
-      }
-    );
-  });
-  
+app.post("/create_acc", (req, res) => {
+  const mem_name = req.body.memName;
+  const type = req.body.type;
+  const sqlInsert = "INSERT INTO members (memName, typeID) select ?, typeID from acType where typeName = ?";
 
-app.get("/members", (req, res) => {
-  db.query("SELECT memID,memName,typeName FROM members,acType where acType.typeID = members.typeID", (err, result) => {
+  db.query(
+    sqlInsert,
+    [mem_name, type],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+});  
+
+app.get("/show_members", (req, res) => {
+  const sqlSelect = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID";
+  db.query(sqlSelect, (err, result) => {
     if (err) {
       console.log(err);
     } else {

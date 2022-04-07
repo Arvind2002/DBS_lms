@@ -11,26 +11,27 @@ import {book_columns} from './components/book-columns'
 
 function App() {
   const [accList,setAccList] = useState("");
-  const [mem_name, setMemName] = useState("");
+  const [memName, setMemName] = useState("");
   const [type, setType] = useState("");
   const [mem_search_ID, setMemSearch] = useState(0); 
- 
+
+  /////////////////////////////////
   const addMember = () => {
-    console.log("In add member")
+    console.log("In addMember() function")
     Axios.post("http://localhost:3001/createAcc", {
-      mem_name: mem_name,
+      memName: memName,
       type: type,
     }).then(() => {
-      console.log("success");
+      console.log("successfully added");
     });
   };
-
 
  const getMembers = () =>{
     Axios.get("http://localhost:3001/members").then((response) => {
       setAccList(response.data);
     });
   }
+
   const searchMembers = () =>{
     console.log(mem_search_ID);
     Axios.put("http://localhost:3001/members_search",
@@ -47,51 +48,32 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Library Management System</h1>
       <h3>Account Details</h3>
-      <div className="information">
+
+      <div className="Information">
         <label>Name:</label>
         <input
-          type="text"
+          type = "text"
+          name = "memName"
           onChange={(event) => {
             setMemName(event.target.value);
           }}
         />
-             <br></br>
-             <label>Account Type:</label>
-             <p>
-               Diamond<br></br>
-               Gold<br></br>
-               Silver<br></br>
-             </p>
+
+        <br></br>
+        <label>Account Type:</label>
         <input
-          type="text"
+          type = "text"
+          name = "typeName"
           onChange={(event) => {
             setType(event.target.value);
           }}
         />
-      </div>
-      <div className = "Books">
-        <button onClick={addMember}>Add Member</button>
-      </div>
-      <br></br>
-      <br></br>
-      <div className = "Books">
-        <button onClick={getMembers}>Show Members</button>
-      </div>
       
-      <div>
-        <br></br>
-        <h4>Search for member</h4>
-        <label>ID:</label>
-        <input
-          type="number"
-          onChange={(event) => {
-            setMemSearch(event.target.value);
-          }}
-        />
-      </div>
-      <div className = "Books">
-        <button onClick={searchMembers}>Search Members</button>
+        <button onClick={addMember}>Add Member</button>
+        <button onClick={getMembers}>Show Members</button>
+
       </div>
     </div>
   );
