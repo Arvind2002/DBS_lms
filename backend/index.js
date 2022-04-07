@@ -37,10 +37,6 @@ app.get("/books", (req, res) => {
   });
 });
 
-app.get("/addbooks", (req, res) =>{
-  db.query()
-});
-
 app.listen(3001, () => {
     console.log("Server running on port 3001");
 });

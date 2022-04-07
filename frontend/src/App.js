@@ -3,8 +3,7 @@ import Axios from 'axios'
 import React, { useEffect, useState } from "react";
 
 function App() {
-
-  const [bookList,setBookList] = useState([]);
+  const [bookList,setBookList] = useState("");
 
  
 
@@ -30,7 +29,8 @@ function App() {
         <button >Add Member</button>
       </div>
       <div className = "Books">
-        <button onClick={getBooks}>Show books</button>
+
+        <button onClick={getBooks}>Go to 3001/books</button>
       </div>
 
     </div>
