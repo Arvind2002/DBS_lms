@@ -1,10 +1,10 @@
-import React, {useMemo} from "react";
+/*import React, {useMemo} from "react";
 import { useTable } from "react-table";
 import {book_columns} from './book-columns'
 import {acc_columns} from './acc-columns'
-import DATA from './data.json'
+import TABLE_DATA from './info.json'
 
-export default function BasicTable({ columns, data, type }) {
+export const BasicTable = () => {
     if(type == 1){
         const columns = useMemo(() => book_columns, [])
     } 
@@ -12,7 +12,7 @@ export default function BasicTable({ columns, data, type }) {
         const columns = useMemo(() => acc_columns, [])
     }
     
-    const data = useMemo(() => DATA, [])
+    const data = useMemo(() => TABLE_DATA, [])
   
   // Use the useTable Hook to send the columns and data to build the table
   const {
@@ -20,7 +20,7 @@ export default function BasicTable({ columns, data, type }) {
     getTableBodyProps, // Sends needed props to your table body
     headerGroups, // Returns normalized header groups
     rows, // rows for the table based on the data passed
-    prepareRow   // Prepare the row in order to be displayed.
+    prepareRow   // Prepare the row in order to be displayed. 
   } = useTable({
     columns,
     data
@@ -52,4 +52,4 @@ export default function BasicTable({ columns, data, type }) {
     </table>
   );
 
-}
+}*/

@@ -1,3 +1,4 @@
+
 //need to check for valid account type
 
 import './App.css';
@@ -6,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import {BasicTable} from './components/BasicTable'
 
 function App() {
-  //const [bookList,setBookList] = useState("");
+  const [accList,setAccList] = useState("");
   const [mem_name, setMemName] = useState("");
   const [type, setType] = useState("");
  
@@ -21,11 +22,11 @@ function App() {
   };
 
 
- /* const getBooks = () =>{
-    Axios.get("http://localhost:3001/books").then((response) => {
-      console.log(response);
+ const getMembers = () =>{
+    Axios.get("http://localhost:3001/account").then((response) => {
+      setAccList(response.data);
     });
-  }*/
+  }
 
   /*add <BasicTable /> in between some divs to make the table work*/
 
@@ -58,7 +59,11 @@ function App() {
       <div className = "Books">
         <button onClick={addMember}>Add Member</button>
       </div>
-
+      <br></br>
+      <br></br>
+      <div className = "Books">
+        <button onClick={getMembers}>Show Members</button>
+      </div>
     </div>
   );
 }
