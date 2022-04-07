@@ -47,7 +47,7 @@ app.get("/members", (req, res) => {
   });
 });
 
-app.get("/members_search", (req, res) => {
+app.post("/members_search", (req, res) => {
   const mem_search_ID = req.body.mem_search_ID;
   console.log(mem_search_ID);
   db.query("SELECT memID,memName,typeName FROM members,acType where acType.typeID = members.typeID and memID = ?",[mem_search_ID], (err, result) => {

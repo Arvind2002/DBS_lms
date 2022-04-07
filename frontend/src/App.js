@@ -33,7 +33,7 @@ function App() {
   }
   const searchMembers = () =>{
     console.log(mem_search_ID);
-    Axios.get("http://localhost:3001/members_search",
+    Axios.put("http://localhost:3001/members_search",
     {mem_search_ID: mem_search_ID,
     }).then((response) => {
       setMemSearch(response.data);
