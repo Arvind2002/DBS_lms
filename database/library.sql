@@ -2,14 +2,14 @@ create database library;
 use library;
 
 create table books(
-    bookID int PRIMARY KEY,
+    bookID int PRIMARY KEY AUTO_INCREMENT,
     title varchar(50),
     author varchar(50),
     publisher varchar(50)
 );
 
 create table acType(
-    typeID int PRIMARY KEY,
+    typeID int PRIMARY KEY AUTO_INCREMENT,
     cost int,
     numBooks int,
     duration int,
@@ -17,13 +17,13 @@ create table acType(
 );
 
 create table members(
-    memID int PRIMARY KEY,
+    memID int PRIMARY KEY AUTO_INCREMENT,
     memName varchar(50),
     typeID int REFERENCES acType(typeID)
 );
 
 create table rooms(
-    roomID int PRIMARY KEY,
+    roomID int PRIMARY KEY AUTO_INCREMENT,
     roomName varchar(20),
     costPerHour int
 );
