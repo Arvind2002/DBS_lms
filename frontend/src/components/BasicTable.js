@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import { useTable } from "react-table";
 
-export default function BasicTable({ columns, data, type }) { 
+export default function BasicTable({ columns, data }) { 
   // Use the useTable Hook to send the columns and data to build the table
   const {
     getTableProps, // Sends the needed props to your table.
@@ -39,5 +39,4 @@ export default function BasicTable({ columns, data, type }) {
       </tbody>
     </table>
   );
-
 }

@@ -1,18 +1,16 @@
-
 //need to check for valid account type
-
 import './App.css';
 import Axios from 'axios'
 import React, { useEffect, useState } from "react"
-import {BasicTable} from './components/BasicTable'
+import BasicTable from './components/BasicTable.js'
 import {acc_columns} from './components/acc-columns'
 import {book_columns} from './components/book-columns'
 //import {DATA} from './components/table-data.json'
 
 function App() {
-  const [accList,setAccList] = useState("");
   const [memName, setMemName] = useState("");
   const [type, setType] = useState("");
+  const [memList, setMemList] = useState([]);
   const [mem_search_ID, setMemSearch] = useState(0); 
 
   /////////////////////////////////
@@ -27,8 +25,8 @@ function App() {
   };
 
  const getMembers = () =>{
-    Axios.get("http://localhost:3001/members").then((response) => {
-      setAccList(response.data);
+    Axios.get("http://localhost:3001/show_members").then((response) => {
+      setMemList(response.data);
     });
   }
 
@@ -45,7 +43,7 @@ function App() {
   <BasicTable columns={???} data={???}/>
   ) in between some divs to make the table work*/
 
-
+  const data = React.useMemo(() => memList);
   return (
     <div className="App">
       <h1>Library Management System</h1>
@@ -65,14 +63,18 @@ function App() {
         <label>Account Type:</label>
         <input
           type = "text"
-          name = "typeName"
+          name = "type"
           onChange={(event) => {
             setType(event.target.value);
           }}
         />
-      
+        
+        <br></br>
         <button onClick={addMember}>Add Member</button>
+        <br></br>
         <button onClick={getMembers}>Show Members</button>
+        <br></br>
+        <BasicTable columns={acc_columns} data={memList}/>
 
       </div>
     </div>
