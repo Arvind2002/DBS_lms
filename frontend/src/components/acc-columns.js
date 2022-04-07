@@ -1,4 +1,4 @@
-export const book_columns = [
+export const acc_columns = [
     {
         Header: 'ID',
         accessor: 'memID'
