@@ -3,8 +3,11 @@
 
 import './App.css';
 import Axios from 'axios'
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import {BasicTable} from './components/BasicTable'
+import {acc_columns} from './components/acc-columns'
+import {book_columns} from './components/book-columns'
+import {DATA} from './components/table-data.json'
 
 function App() {
   const [accList,setAccList] = useState("");
@@ -28,7 +31,9 @@ function App() {
     });
   }
 
-  /*add <BasicTable /> in between some divs to make the table work*/
+  /*add return (
+  <BasicTable columns={???} data={???}/>
+  ) in between some divs to make the table work*/
 
 
   return (
