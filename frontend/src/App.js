@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react"
 import BasicTable from './components/BasicTable.js'
 import {acc_columns} from './components/acc-columns'
 import {book_columns} from './components/book-columns'
-//import {DATA} from './components/table-data.json'
 
 function App() {
   const [memName, setMemName] = useState("");
@@ -16,6 +15,9 @@ function App() {
   /////////////////////////////////
   const addMember = () => {
     console.log("In addMember() function")
+    if((type.toLowerCase() != "platinum") && (type.toLowerCase() != "gold") && (type.toLowerCase() != "silver") && (type.toLowerCase() != "bronze")){
+      alert("Wrong account type!");
+    }
     Axios.post("http://localhost:3001/create_acc", {
       memName: memName,
       type: type,
@@ -27,7 +29,7 @@ function App() {
  const getMembers = () =>{
    console.log("In getMembers() function")
     Axios.get("http://localhost:3001/show_members").then((response) => {
-    setMemList(response.data);
+      setMemList(response.data);
     });
   }
 
@@ -76,6 +78,7 @@ function App() {
         <button onClick={getMembers}>Show Members</button>
         <br></br>
         <BasicTable columns={acc_columns} data={memData}/>
+        <br></br>
 
       </div>
     </div>
