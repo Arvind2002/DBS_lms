@@ -27,7 +27,7 @@ function App() {
  const getMembers = () =>{
    console.log("In getMembers() function")
     Axios.get("http://localhost:3001/show_members").then((response) => {
-      setMemList(response.data);
+    setMemList(response.data);
     });
   }
 
