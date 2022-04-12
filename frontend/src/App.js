@@ -103,7 +103,7 @@ function App() {
         <button onClick={searchMembers}>Search</button>
         <br></br>
         <br></br>
-        <BasicTable columns={acc_columns} data={searchAccData}/>
+        <BasicTable columns={acc_columns} data= {searchAccData}/>
         <br></br>
       </div>
     </div>
