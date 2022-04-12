@@ -122,8 +122,8 @@ app.post("/book_room", (req, res) => {
   const hour = req.body.hour; 
   const q1 = "select memID from reservations where roomID = ? and hour = ?";
   const q2 = "insert into reservations values (?,?,?)";
-
-  var bookedHour = db.query(
+  var bookedHour = 0;
+  bookedHour = db.query(
     q1,[roomID,hour],
     (err, result) => {
       if (err) {
@@ -147,17 +147,45 @@ app.post("/book_room", (req, res) => {
     );
   }
   else{
-    res.send("slot already booked");
+    console.log("duplicate");
   }
 });
 
-app.post('/book_room', async (req, res) => {
-  try {
-    
-  } catch (error) {
-    console.log(error)
-  }
-})
+
+
+app.get("/show_reservations", (req, res) => {
+  const sqlInsert = "SELECT members.memId,memName,roomName, reservations.hour,startTime,endTime from reservations,members,rooms,timings where reservations.memID = members.memID and rooms.roomID = reservations.roomID and reservations.hour = timings.hour ";
+  db.query(
+    sqlInsert,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/delete_reservations", (req,res) => {
+  const roomID = req.body.roomID;
+  const memID = req.body.memID;
+  const hour = req.body.hour;
+  console.log(roomID,memID,hour);
+  const q1 = "delete from reservations where roomID = ? and memID = ? and hour = ?";
+  db.query(
+    q1,[roomID,memID,hour],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.send(result);
+      }
+    }
+  );
+});
 
 
 app.listen(3001, () => {
