@@ -47,17 +47,24 @@ app.get("/show_members", (req, res) => {
   });
 });
 
-app.post("/search", (req, res) => {
-  const mem_search_ID = req.body.mem_search_ID;
-  console.log(mem_search_ID);
-  db.query("select * from members where memName like "%n%";",[mem_search_ID], (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+app.get("/search_members", (req, res) => {
+  const name = req.query.accName;
+  const sym = "%";
+  const checkName = sym.concat(name,sym);
+  const sqlInsert = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID and memName like?";
+
+  db.query(
+    sqlInsert,
+    [checkName],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
-});
+  );
+});  
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");

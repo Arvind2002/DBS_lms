@@ -10,7 +10,8 @@ function App() {
   const [memName, setMemName] = useState("");
   const [type, setType] = useState("");
   const [memList, setMemList] = useState([]);
-  const [mem_search_ID, setMemSearch] = useState([]); 
+  const [memSearchName, setMemSearchName] = useState("");
+  const [memSearchNameList, setMemSearchList] = useState([]); 
 
   /////////////////////////////////
   const addMember = () => {
@@ -22,7 +23,7 @@ function App() {
       memName: memName,
       type: type,
     }).then(() => {
-      alert("Acount created!");
+      alert("Account created!");
       console.log("successfully added");
     });
   };
@@ -37,12 +38,15 @@ function App() {
 
 
   const searchMembers = () =>{
-    console.log(mem_search_ID);
-    let input = document.getElementById('searchbar').value
-    input=input.toLowerCase();
-    Axios.get("http://localhost:3001/search_members").then((response) => {
-      setMemSearch(response.data);
+    console.log(memSearchName)
+    Axios.get("http://localhost:3001/search_members",{
+      params: 
+      {accName: memSearchName}
+    })
+    .then((response) => {
+      setMemSearchList(response.data);
     });
+    console.log(memSearchNameList);
   }
 
   /*add return (
@@ -50,6 +54,7 @@ function App() {
   ) in between some divs to make the table work*/
 
   const memData = React.useMemo(() => memList);
+  const searchAccData = React.useMemo(()=>memSearchNameList);
   return (
     <div className="App">
       <h1>Library Management System</h1>
@@ -80,14 +85,26 @@ function App() {
         <br></br>
         <button onClick={getMembers}>Show Members</button>
         <br></br>
+        <br></br>
         <BasicTable columns={acc_columns} data={memData}/>
         <br></br>
         <br></br>
         <br></br>
-        <input id="searchbar" type="text"
-        name="search" placeholder="Search Accounts based on Name" onChange={(event) => {
-          setMemName(event.target.value);
-        }}/>
+        <label>Search Account:</label>
+        <input
+          type = "text"
+          name = "memSearchName"
+          placeholder = "Enter Name of member"
+          onChange={(event) => {
+            setMemSearchName(event.target.value);
+          }}
+        />
+        <br></br>
+        <button onClick={searchMembers}>Search</button>
+        <br></br>
+        <br></br>
+        <BasicTable columns={acc_columns} data={searchAccData}/>
+        <br></br>
       </div>
     </div>
   );
