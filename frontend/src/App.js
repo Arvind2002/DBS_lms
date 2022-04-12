@@ -57,7 +57,7 @@ function App() {
     
     <div className="App">
     
-      <h1>Library Management System</h1>
+      <h1>Library dick System</h1>
       <h3>Account Details</h3>
 
       <div className="Information">
