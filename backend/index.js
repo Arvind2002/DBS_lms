@@ -13,6 +13,7 @@ const db = mysql.createPool({
   user: 'root', 
   password: 'password',
   database: 'library',
+  //multipleStatements: true
 });
 
 app.post("/create_acc", (req, res) => {
@@ -38,6 +39,7 @@ app.post("/update_acc", (req, res) => {
   const name = req.body.updateName;
   const type = req.body.updateType;
   const sqlInsert = "update members set memName = ?, typeID = ? where memID = ?";
+
   db.query(
     sqlInsert,
     [name, type,id],
@@ -81,6 +83,91 @@ app.get("/search_members", (req, res) => {
       if (err) {
         console.log(err);
       } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/show_rooms", (req, res) => {
+  const sqlInsert = "SELECT * from rooms";
+
+  db.query(
+    sqlInsert,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/book_room", (req, res) => {
+  const roomID =  req.body.roomID;
+  const memID = req.body.memID;
+  const hour = req.body.hour;
+  const q1 = "select memID from reservations where roomID = ? and hour = ?";
+  const q2 = "insert into reservations values (?,?,?)";
+  var bookedHour = 0;
+  bookedHour = db.query(
+    q1,[roomID,hour],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+      }
+    }
+  );
+
+  if(bookedHour != null){
+    db.query(
+      q2,[roomID,memID,hour],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(res);
+        }
+      }
+    );
+  }
+  else{
+    console.log("duplicate");
+  }
+});
+
+app.get("/show_reservations", (req, res) => {
+  const sqlInsert = "SELECT members.memId,memName,roomName, reservations.hour,startTime,endTime from reservations,members,rooms,timings where reservations.memID = members.memID and rooms.roomID = reservations.roomID and reservations.hour = timings.hour ";
+  db.query(
+    sqlInsert,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/delete_reservations", (req,res) => {
+  const roomID = req.body.roomID;
+  const memID = req.body.memID;
+  const hour = req.body.hour;
+  console.log(roomID,memID,hour);
+  const q1 = "delete from reservations where roomID = ? and memID = ? and hour = ?";
+  db.query(
+    q1,[roomID,memID,hour],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
         res.send(result);
       }
     }
@@ -141,7 +228,7 @@ app.post("/del_book", (req, res) => {
       }
     }
   );
-});  
+});
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");
