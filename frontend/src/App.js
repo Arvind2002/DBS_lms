@@ -13,7 +13,9 @@ function App() {
   const [memSearchName, setMemSearchName] = useState("");
   const [memSearchNameList, setMemSearchList] = useState([]); 
 
-  /////////////////////////////////
+  const memData = React.useMemo(() => memList);
+  const searchAccData = React.useMemo(() => memSearchNameList);
+
   const addMember = () => {
     console.log("In addMember() function")
     if((type.toLowerCase() != "platinum") && (type.toLowerCase() != "gold") && (type.toLowerCase() != "silver") && (type.toLowerCase() != "bronze")){
@@ -23,7 +25,6 @@ function App() {
       memName: memName,
       type: type,
     }).then(() => {
-      alert("Account created!");
       console.log("successfully added");
     });
   };
@@ -34,8 +35,6 @@ function App() {
       setMemList(response.data);
     });
   }
-
-
 
   const searchMembers = () =>{
     console.log(memSearchName)
@@ -53,15 +52,13 @@ function App() {
   <BasicTable columns={???} data={???}/>
   ) in between some divs to make the table work*/
 
-  const memData = React.useMemo(() => memList);
-  const searchAccData = React.useMemo(()=>memSearchNameList);
   return (
     <div className="App">
       <h1>Library Management System</h1>
       <h3>Account Details</h3>
 
       <div className="Information">
-        <label><a href = "addMembers.js">Name:</a></label>
+        <label>Name:</label>
         <input
           type = "text"
           name = "memName"
