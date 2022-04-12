@@ -11,7 +11,11 @@ const Accounts = () => {
     const [type, setType] = useState("");
     //const [memList, setMemList] = useState([]);
     const [memSearchName, setMemSearchName] = useState("");
-    const [memSearchNameList, setMemSearchList] = useState([]); 
+    const [memSearchNameList, setMemSearchList] = useState([]);
+    const [updateID, setUpdateID] = useState("");
+    const [updateType, setUpdateType] = useState(0);
+    const [updateName, setUpdateName] = useState("");
+ 
 
 
     const addMember = () => {
@@ -46,7 +50,19 @@ const Accounts = () => {
         });
         console.log(memSearchNameList);
     }
-
+    const updateMember = () => {
+        if((updateType<0) || (updateType >4)){
+            alert("Wrong account type!");
+        }
+        Axios.post("http://localhost:3001/update_acc", {
+            updateID: updateID,
+            updateName: updateName,
+            updateType: updateType,
+        }).then(() => {
+            alert("Account deleted!");
+            console.log("successfully deleted");
+        });
+    };
     //const memData = React.useMemo(() => memList);
     const searchAccData = React.useMemo(()=>memSearchNameList);
 
@@ -113,6 +129,44 @@ const Accounts = () => {
                 
                 <br></br>
                 <button onClick={deleteMember}>Delete Member</button>
+                <br></br>
+                <br></br>
+                <br></br>
+                <div className="Information">
+                <h3>Update account</h3>
+                <label>ID of account:</label>
+                <input
+                type = "text"
+                name = "memName"
+                placeholder = "Enter your ID"
+                onChange={(event) => {
+                    setUpdateID(event.target.value);
+                }}
+                />
+                <br></br>
+                <label>New Name:</label>
+                <input
+                type = "text"
+                name = "memName"
+                placeholder = "Enter your name"
+                onChange={(event) => {
+                    setUpdateName(event.target.value);
+                }}
+                />
+                <br></br>
+                <label>New Account Type ID:</label>
+                <input
+                type = "text"
+                name = "type"
+                placeholder = "Platinum-1/Gold-2/Silver-3/Bronze-4"
+                onChange={(event) => {
+                    setUpdateType(event.target.value);
+                }}
+                />
+                <br></br>
+                <button onClick={updateMember}>Update member</button>
+            </div>
+
             </div>
         </div>
     );

@@ -33,6 +33,24 @@ app.post("/create_acc", (req, res) => {
   );
 });  
 
+app.post("/update_acc", (req, res) => {
+  const id = req.body.updateID;
+  const name = req.body.updateName;
+  const type = req.body.updateType;
+  const sqlInsert = "update members set memName = ?, typeID = ? where memID = ?";
+  db.query(
+    sqlInsert,
+    [name, type,id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+});  
+
 app.get("/show_members", (req, res) => {
   const sqlSelect = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID";
   db.query(sqlSelect, (err, result) => {
@@ -61,16 +79,6 @@ app.post("/delete_acc", (req, res) => {
   );
 });  
 
-app.get("/show_members", (req, res) => {
-  const sqlSelect = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID";
-  db.query(sqlSelect, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
 
 app.get("/search_members", (req, res) => {
   const name = req.query.accName;
