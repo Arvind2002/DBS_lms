@@ -24,7 +24,7 @@ function App() {
       memName: memName,
       type: type,
     }).then(() => {
-      console.log("successfully added");
+      console.log("successfully added!");
     });
   };
 
@@ -32,6 +32,7 @@ function App() {
    console.log("In getMembers() function")
     Axios.get("http://localhost:3001/show_members").then((response) => {
       setMemList(response.data);
+      console.log("success!");
     });
   }
 
