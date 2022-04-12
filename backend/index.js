@@ -6,6 +6,7 @@ const cors = require("cors")
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 const db = mysql.createPool({
   host: 'localhost',
@@ -13,10 +14,6 @@ const db = mysql.createPool({
   password: 'password',
   database: 'library',
 });
-
-app.use(cors());
-app.use(express.json());
-app.use(bodyParser.urlencoded({extended: true}));
 
 app.post("/create_acc", (req, res) => {
   const mem_name = req.body.memName;
