@@ -51,7 +51,7 @@ const Accounts = () => {
         console.log(memSearchNameList);
     }
     const updateMember = () => {
-        if((updateType<0) || (updateType >4)){
+        if((updateType<1) || (updateType >4)){
             alert("Wrong account type!");
         }
         Axios.post("http://localhost:3001/update_acc", {
