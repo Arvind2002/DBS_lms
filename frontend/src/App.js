@@ -13,8 +13,6 @@ function App() {
   const [memSearchName, setMemSearchName] = useState("");
   const [memSearchNameList, setMemSearchList] = useState([]); 
 
-  const memData = React.useMemo(() => memList);
-  const searchAccData = React.useMemo(() => memSearchNameList);
 
   const addMember = () => {
     console.log("In addMember() function")
