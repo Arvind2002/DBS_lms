@@ -8,12 +8,9 @@ import {acc_columns} from '../components/acc-columns.js'
 const Accounts = () => {
     const [memName, setMemName] = useState("");
     const [type, setType] = useState("");
-
     const [memSearchName, setMemSearchName] = useState("");
     const [memSearchNameList, setMemSearchList] = useState([]);
-
     const [deleteID,setMemDeleteID] = useState(0);
-    
     const [updateID, setUpdateID] = useState("");
     const [updateType, setUpdateType] = useState(0);
     const [updateName, setUpdateName] = useState("");

@@ -51,17 +51,6 @@ app.post("/update_acc", (req, res) => {
   );
 });  
 
-app.get("/show_members", (req, res) => {
-  const sqlSelect = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID";
-  db.query(sqlSelect, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
-
 app.post("/delete_acc", (req, res) => {
   const deleteID = req.body.deleteID;
   const sqlInsert = "delete from members where memID = ?";
@@ -97,6 +86,62 @@ app.get("/search_members", (req, res) => {
     }
   );
 });
+
+app.post("/add_book", (req, res) => {
+  const book_name = req.body.bookName;
+  const auth_name = req.body.authName;
+  const pub_name = req.body.pubName;
+  const genre = req.body.genre;
+  const sqlInsert = "INSERT INTO books (title, author, publisher, genre) values (?, ?, ?, ?);"
+
+  db.query(
+    sqlInsert,
+    [book_name, auth_name, pub_name, genre],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+});
+
+app.get("/search_books", (req, res) => {
+  const name = req.query.bookName;
+  const sym = "%";
+  const checkName = sym.concat(name, sym);
+  const sqlInsert = "SELECT bookID, title, author, publisher, books.genre, hall, shelf FROM books, locations where books.genre = locations.genre and title like ?";
+
+  db.query(
+    sqlInsert,
+    [checkName],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/del_book", (req, res) => {
+  const deleteID = req.body.deleteID;
+  const sqlInsert = "delete from books where bookID = ?";
+
+  db.query(
+    sqlInsert,
+    [deleteID],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+});  
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");
