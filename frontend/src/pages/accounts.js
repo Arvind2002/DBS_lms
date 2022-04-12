@@ -9,11 +9,11 @@ const Accounts = () => {
     const [memName, setMemName] = useState("");
     const [type, setType] = useState("");
 
-    const [deleteID,setMemDeleteID] = useState(0);
-
     const [memSearchName, setMemSearchName] = useState("");
     const [memSearchNameList, setMemSearchList] = useState([]);
 
+    const [deleteID,setMemDeleteID] = useState(0);
+    
     const [updateID, setUpdateID] = useState("");
     const [updateType, setUpdateType] = useState(0);
     const [updateName, setUpdateName] = useState("");
@@ -69,10 +69,11 @@ const Accounts = () => {
 
     return(
         <div>
-            <h1>Add Members</h1>
-            <h3>Account Details</h3>
+            <h1>Member Details</h1>
+            <h3>Add Member</h3>
 
-            <div className="Information">
+            <div className="Add">
+                <br></br>
                 <label>Name: </label>
                 <input
                 type = "text"
@@ -93,14 +94,14 @@ const Accounts = () => {
                     setType(event.target.value);
                 }}
                 />
-            </div>
 
-            <div className="Tables">  
                 <br></br>
                 <button onClick={addMember}>Add Member</button>
+            </div>
+
+            <div className="Search">
                 <br></br>
-                <br></br>
-                <br></br>
+                <h3>Search Members</h3>
                 <label>Search Account: </label>
                 <input
                     type = "text"
@@ -110,13 +111,15 @@ const Accounts = () => {
                         setMemSearchName(event.target.value);
                     }}
                 />
-
                 <br></br>
                 <button onClick={searchMembers}>Search</button>
                 <br></br>
                 <br></br>
                 <BasicTable columns={acc_columns} data= {searchAccData}/>
                 <br></br>
+            </div>
+
+            <div className='Delete'>
                 <br></br>
                 <h3>Delete Account</h3>
                 <label>Member ID: </label>
@@ -128,13 +131,13 @@ const Accounts = () => {
                         setMemDeleteID(event.target.value);
                     }}
                 />
-                
                 <br></br>
                 <button onClick={deleteMember}>Delete Member</button>
                 <br></br>
+            </div>  
+
+            <div className='Update'>
                 <br></br>
-                <br></br>
-                <div className="Information">
                 <h3>Update account</h3>
                 <label>Member ID: </label>
                 <input
@@ -166,9 +169,7 @@ const Accounts = () => {
                 }}
                 />
                 <br></br>
-                <button onClick={updateMember}>Update member</button>
-            </div>
-
+                <button onClick={updateMember}>Update Member</button>
             </div>
         </div>
     );

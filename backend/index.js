@@ -79,7 +79,6 @@ app.post("/delete_acc", (req, res) => {
   );
 });  
 
-
 app.get("/search_members", (req, res) => {
   const name = req.query.accName;
   const sym = "%";
@@ -97,7 +96,7 @@ app.get("/search_members", (req, res) => {
       }
     }
   );
-});  
+});
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");
