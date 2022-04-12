@@ -47,7 +47,7 @@ const Accounts = () => {
         console.log(memSearchNameList);
     }
 
-    const memData = React.useMemo(() => memList);
+    //const memData = React.useMemo(() => memList);
     const searchAccData = React.useMemo(()=>memSearchNameList);
 
     return(
