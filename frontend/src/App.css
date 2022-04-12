@@ -31,7 +31,6 @@ input {
   font-size: 20px;
   padding-left: 10px;
   margin: 5px;
-
 }
 
 button {
@@ -83,9 +82,28 @@ nav ul li a {
 }
 
 h1 {
+  font-family: Calibri, sans-serif;
   margin-bottom: 20px;
 }
 
+h2 {
+  font-family: Calibri, sans-serif;
+}
+
+h3 {
+  font-family: Calibri, sans-serif;
+}
+
 p {
+  font-family: Calibri, sans-serif;
   margin-bottom: 15px;
+  color: lightblue;
+}
+
+li{
+  font-family: Calibri, sans-serif;
+}
+
+label{
+  font-family: Calibri, sans-serif;
 }
