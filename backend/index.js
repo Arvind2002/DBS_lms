@@ -32,7 +32,7 @@ app.post("/create_acc", (req, res) => {
       }
     }
   );
-});  
+});
 
 app.post("/update_acc", (req, res) => {
   const id = req.body.updateID;
@@ -79,7 +79,6 @@ app.post("/delete_acc", (req, res) => {
     }
   );
 });  
-
 
 app.get("/search_members", (req, res) => {
   const name = req.query.accName;

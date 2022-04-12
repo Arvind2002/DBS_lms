@@ -3,20 +3,20 @@ import Axios from 'axios'
 import React, { useEffect, useState } from "react"
 import BasicTable from '../components/BasicTable.js'
 import {acc_columns} from '../components/acc-columns.js'
-import {book_columns} from '../components/book-columns.js'
+//import 'bootstrap/dist/css/bootstrap.css';
 
 const Accounts = () => {
     const [memName, setMemName] = useState("");
-    const [deleteID,setMemDeleteID] = useState(0);
     const [type, setType] = useState("");
-    //const [memList, setMemList] = useState([]);
+
     const [memSearchName, setMemSearchName] = useState("");
     const [memSearchNameList, setMemSearchList] = useState([]);
+
+    const [deleteID,setMemDeleteID] = useState(0);
+    
     const [updateID, setUpdateID] = useState("");
     const [updateType, setUpdateType] = useState(0);
     const [updateName, setUpdateName] = useState("");
- 
-
 
     const addMember = () => {
         console.log("In addMember() function")
@@ -50,6 +50,7 @@ const Accounts = () => {
         });
         console.log(memSearchNameList);
     }
+
     const updateMember = () => {
         if((updateType<1) || (updateType >4)){
             alert("Wrong account type!");
@@ -63,110 +64,112 @@ const Accounts = () => {
             console.log("successfully deleted");
         });
     };
-    //const memData = React.useMemo(() => memList);
+    
     const searchAccData = React.useMemo(()=>memSearchNameList);
 
     return(
         <div>
-            <h1>Add Members</h1>
-            <h3>Account Details</h3>
+            <h1>Member Details</h1>
+            <h3>Add Member</h3>
 
-            <div className="Information">
-                <label>Name:</label>
+            <div className="Add">
+                <br></br>
+                <label>Name: </label>
                 <input
                 type = "text"
                 name = "memName"
-                placeholder = "Enter your name"
+                placeholder = "enter your name"
                 onChange={(event) => {
                     setMemName(event.target.value);
                 }}
                 />
 
                 <br></br>
-                <label>Account Type:</label>
+                <label>Account Type: </label>
                 <input
                 type = "text"
                 name = "type"
-                placeholder = "Platinum/Gold/Silver/Bronze"
+                placeholder = "platinum/gold/silver/bronze"
                 onChange={(event) => {
                     setType(event.target.value);
                 }}
                 />
-            </div>
 
-            <div className="Tables">  
                 <br></br>
                 <button onClick={addMember}>Add Member</button>
+            </div>
+
+            <div className="Search">
                 <br></br>
-                <br></br>
-                <br></br>
-                <label>Search Account:</label>
+                <h3>Search Members</h3>
+                <label>Search Account: </label>
                 <input
                     type = "text"
                     name = "memSearchName"
-                    placeholder = "Enter member name"
+                    placeholder = "enter member name"
                     onChange={(event) => {
                         setMemSearchName(event.target.value);
                     }}
                 />
-
                 <br></br>
                 <button onClick={searchMembers}>Search</button>
                 <br></br>
                 <br></br>
                 <BasicTable columns={acc_columns} data= {searchAccData}/>
                 <br></br>
+            </div>
+
+            <div className='Delete'>
                 <br></br>
-                <label>Delete Account:</label>
+                <h3>Delete Account</h3>
+                <label>Member ID: </label>
                 <input
                     type = "text"
                     name = "type"
-                    placeholder = "Enter member ID"
+                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setMemDeleteID(event.target.value);
                     }}
                 />
-                
                 <br></br>
                 <button onClick={deleteMember}>Delete Member</button>
                 <br></br>
+            </div>  
+
+            <div className='Update'>
                 <br></br>
-                <br></br>
-                <div className="Information">
                 <h3>Update account</h3>
-                <label>ID of account:</label>
+                <label>Member ID: </label>
                 <input
                 type = "text"
                 name = "memName"
-                placeholder = "Enter your ID"
+                placeholder = "enter your ID"
                 onChange={(event) => {
                     setUpdateID(event.target.value);
                 }}
                 />
                 <br></br>
-                <label>New Name:</label>
+                <label>New Name: </label>
                 <input
                 type = "text"
                 name = "memName"
-                placeholder = "Enter your name"
+                placeholder = "enter your name"
                 onChange={(event) => {
                     setUpdateName(event.target.value);
                 }}
                 />
                 <br></br>
-                <label>New Account Type ID:</label>
+                <label>New Account Type ID: </label>
                 <input
                 type = "text"
                 name = "type"
-                placeholder = "Platinum-1/Gold-2/Silver-3/Bronze-4"
+                placeholder = "1-platinum; 2-gold; 3-silver; 4-bronze"
                 onChange={(event) => {
                     setUpdateType(event.target.value);
                 }}
                 />
                 <br></br>
-                <button onClick={updateMember}>Update member</button>
-            </div>
-
+                <button onClick={updateMember}>Update Member</button>
             </div>
         </div>
     );
