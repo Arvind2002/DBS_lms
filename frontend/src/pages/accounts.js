@@ -104,7 +104,7 @@ const Accounts = () => {
                 <input
                     type = "text"
                     name = "memSearchName"
-                    placeholder = "Enter name of member"
+                    placeholder = "Enter member name"
                     onChange={(event) => {
                         setMemSearchName(event.target.value);
                     }}
@@ -121,7 +121,7 @@ const Accounts = () => {
                 <input
                     type = "text"
                     name = "type"
-                    placeholder = "Enter ID of account"
+                    placeholder = "Enter member ID"
                     onChange={(event) => {
                         setMemDeleteID(event.target.value);
                     }}
