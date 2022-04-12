@@ -8,3 +8,4 @@ Steps to execute:-
 1) Run library.sql script on mysql
 2) Run npm start from frontend directory
 3) simultaneuously run node index.js from backend
+4) testing
