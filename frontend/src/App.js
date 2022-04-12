@@ -1,9 +1,14 @@
 import './App.css';
-import Axios from 'axios'
-import React, { useEffect, useState } from "react"
-import BasicTable from './components/BasicTable.js'
-import {acc_columns} from './components/acc-columns'
-import {book_columns} from './components/book-columns'
+import Axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+
+//pages + components
+import Navbar from './components/Navbar';
+import Accounts from './pages/accounts';
+import Books from './pages/books';
+import Home from './pages/home';
+import Rooms from './pages/rooms';
 
 function App() {
   const [memName, setMemName] = useState("");
@@ -16,7 +21,7 @@ function App() {
 
   const addMember = () => {
     console.log("In addMember() function")
-    if((type.toLowerCase() != "platinum") && (type.toLowerCase() != "gold") && (type.toLowerCase() != "silver") && (type.toLowerCase() != "bronze")){
+    if((type.toLowerCase() !== "platinum") && (type.toLowerCase() !== "gold") && (type.toLowerCase() !== "silver") && (type.toLowerCase() !== "bronze")){
       alert("Wrong account type!");
     }
     Axios.post("http://localhost:3001/create_acc", {
@@ -47,79 +52,20 @@ function App() {
     console.log(memSearchNameList);
   }
 
-  /*add return (
-  <BasicTable columns={???} data={???}/>
-  ) in between some divs to make the table work*/
-
   //const memData = React.useMemo(() => memList);
   const searchAccData = React.useMemo(()=>memSearchNameList);
+  
   return (
-    
-    <div className="App">
-    
-      <h1>Library Management System</h1>
-      <h3>Account Details</h3>
-
-      <div className="Information">
-        <label>Name:</label>
-        <input
-          type = "text"
-          name = "memName"
-          placeholder = "Enter your name"
-          onChange={(event) => {
-            setMemName(event.target.value);
-          }}
-        />
-
-        <br></br>
-        <label>Account Type:</label>
-        <input
-          type = "text"
-          name = "type"
-          placeholder = "Platinum/Gold/Silver/Bronze"
-          onChange={(event) => {
-            setType(event.target.value);
-          }}
-        />
-      </div>
-
-      <div className="Tables">  
-        <br></br>
-        <button onClick={addMember}>Add Member</button>
-        <br></br>
-        <br></br>
-        <br></br>
-        <label>Search Account:</label>
-        <input
-          type = "text"
-          name = "memSearchName"
-          placeholder = "Enter name of member"
-          onChange={(event) => {
-            setMemSearchName(event.target.value);
-          }}
-        />
-        <br></br>
-        <button onClick={searchMembers}>Search</button>
-        <br></br>
-        <br></br>
-        <BasicTable columns={acc_columns} data= {searchAccData}/>
-        <br></br>
-        <br></br>
-        <label>Delete Account:</label>
-        <input
-          type = "text"
-          name = "type"
-          placeholder = "Enter ID of account"
-          onChange={(event) => {
-            setMemDeleteID(event.target.value);
-          }}
-        />
-        
-        <br></br>
-        <button onClick={deleteMember}>Delete Member</button>
-      </div>
+    <div className='App'>
+      <Navbar />
+      <Routes>
+        <Route element = {<Home />} path = "/" />
+        <Route element = {<Accounts />} path = "/accounts" />
+        <Route element = {<Books />} path = "/books" />
+        <Route element = {<Rooms />} path = "/rooms" />
+      </Routes>
     </div>
   );
 }
 
-export default App;
+export default App; 
