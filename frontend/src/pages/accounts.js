@@ -3,6 +3,7 @@ import Axios from 'axios'
 import React, { useEffect, useState } from "react"
 import BasicTable from '../components/BasicTable.js'
 import {acc_columns} from '../components/acc-columns.js'
+//import 'bootstrap/dist/css/bootstrap.css';
 
 const Accounts = () => {
     const [memName, setMemName] = useState("");
@@ -12,7 +13,7 @@ const Accounts = () => {
 
     const [memSearchName, setMemSearchName] = useState("");
     const [memSearchNameList, setMemSearchList] = useState([]);
-    
+
     const [updateID, setUpdateID] = useState("");
     const [updateType, setUpdateType] = useState(0);
     const [updateName, setUpdateName] = useState("");
@@ -76,7 +77,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "memName"
-                placeholder = "Enter your name"
+                placeholder = "enter your name"
                 onChange={(event) => {
                     setMemName(event.target.value);
                 }}
@@ -87,7 +88,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "type"
-                placeholder = "Platinum/Gold/Silver/Bronze"
+                placeholder = "platinum/gold/silver/bronze"
                 onChange={(event) => {
                     setType(event.target.value);
                 }}
@@ -104,7 +105,7 @@ const Accounts = () => {
                 <input
                     type = "text"
                     name = "memSearchName"
-                    placeholder = "Enter member name"
+                    placeholder = "enter member name"
                     onChange={(event) => {
                         setMemSearchName(event.target.value);
                     }}
@@ -122,7 +123,7 @@ const Accounts = () => {
                 <input
                     type = "text"
                     name = "type"
-                    placeholder = "Enter member ID"
+                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setMemDeleteID(event.target.value);
                     }}
@@ -139,7 +140,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "memName"
-                placeholder = "Enter your ID"
+                placeholder = "enter your ID"
                 onChange={(event) => {
                     setUpdateID(event.target.value);
                 }}
@@ -149,7 +150,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "memName"
-                placeholder = "Enter your name"
+                placeholder = "enter your name"
                 onChange={(event) => {
                     setUpdateName(event.target.value);
                 }}
@@ -159,7 +160,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "type"
-                placeholder = "Platinum-1/Gold-2/Silver-3/Bronze-4"
+                placeholder = "1-platinum; 2-gold; 3-silver; 4-bronze"
                 onChange={(event) => {
                     setUpdateType(event.target.value);
                 }}

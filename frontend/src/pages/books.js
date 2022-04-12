@@ -28,26 +28,31 @@ const Books = () => {
                 }}
                 />
 
-                <label>Author Name: </label>
+                <br></br>
+                <label className='sucky'>Author Name: </label>
                 <input
                 type = "text"
                 name = "authName"
-                placeholder = "enter book name"
+                placeholder = "enter author name"
                 onChange={(event) => {
                     setAuthName(event.target.value);
                 }}
                 />
 
+                <br></br>
                 <label>Publisher Name: </label>
                 <input
                 type = "text"
                 name = "pubName"
-                placeholder = "enter book name"
+                placeholder = "enter publisher name"
                 onChange={(event) => {
                     setPubName(event.target.value);
                 }}
                 />
 
+                <br></br>
+                <button onClick={addBooks}>Add Book</button>
+                <br></br>
 
             </div>
         </div>

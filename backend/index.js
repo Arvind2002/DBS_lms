@@ -31,7 +31,7 @@ app.post("/create_acc", (req, res) => {
       }
     }
   );
-});  
+});
 
 app.post("/update_acc", (req, res) => {
   const id = req.body.updateID;
