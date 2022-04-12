@@ -47,10 +47,10 @@ app.get("/show_members", (req, res) => {
   });
 });
 
-app.post("/members_search", (req, res) => {
+app.post("/search", (req, res) => {
   const mem_search_ID = req.body.mem_search_ID;
   console.log(mem_search_ID);
-  db.query("SELECT memID,memName,typeName FROM members,acType where acType.typeID = members.typeID and memID = ?",[mem_search_ID], (err, result) => {
+  db.query("select * from members where memName like "%n%";",[mem_search_ID], (err, result) => {
     if (err) {
       console.log(err);
     } else {
