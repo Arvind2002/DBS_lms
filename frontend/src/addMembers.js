@@ -49,11 +49,9 @@ function App() {
   const memData = React.useMemo(() => memList);
   return (
     <div className="App">
-      <h1>Library Management System</h1>
-      <h3>Account Details</h3>
 
       <div className="Information">
-        <label><a href = "addMembers.js">Name:</a></label>
+        <label>Name:</label>
         <input
           type = "text"
           name = "memName"
