@@ -1,4 +1,3 @@
-//need to check for valid account type
 import './App.css';
 import Axios from 'axios'
 import React, { useEffect, useState } from "react"
@@ -14,7 +13,9 @@ function App() {
   const [memSearchName, setMemSearchName] = useState("");
   const [memSearchNameList, setMemSearchList] = useState([]); 
 
-  /////////////////////////////////
+  const memData = React.useMemo(() => memList);
+  const searchAccData = React.useMemo(() => memSearchNameList);
+
   const addMember = () => {
     console.log("In addMember() function")
     if((type.toLowerCase() != "platinum") && (type.toLowerCase() != "gold") && (type.toLowerCase() != "silver") && (type.toLowerCase() != "bronze")){
@@ -24,8 +25,7 @@ function App() {
       memName: memName,
       type: type,
     }).then(() => {
-      alert("Account created!");
-      console.log("successfully added");
+      console.log("successfully added!");
     });
   };
 
@@ -41,10 +41,9 @@ function App() {
   const searchMembers = () =>{
     console.log(memSearchName)
     Axios.get("http://localhost:3001/search_members",{
-      params: 
+      params:
       {accName: memSearchName}
-    })
-    .then((response) => {
+    }).then((response) => {
       setMemSearchList(response.data);
     });
     console.log(memSearchNameList);
@@ -84,7 +83,9 @@ function App() {
             setType(event.target.value);
           }}
         />
-        
+      </div>
+
+      <div className="Tables">  
         <br></br>
         <button onClick={addMember}>Add Member</button>
         <br></br>
