@@ -7,8 +7,8 @@ export default function Navbar() {
             <ul>
                 <li><Link to = "/">Home</Link></li>
                 <li><Link to = "/accounts">Accounts</Link></li>
-                <li><Link to="/books">Books</Link></li>
-                <li><Link to="/room_booking">Room Booking</Link></li>
+                <li><Link to = "/books">Books</Link></li>
+                <li><Link to = "/rooms">Room Booking</Link></li>
             </ul>
         </nav>
     </header>
