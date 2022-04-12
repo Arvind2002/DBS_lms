@@ -61,7 +61,7 @@ function App() {
       <h3>Account Details</h3>
 
       <div className="Information">
-        <label>Name:</label>
+        <label><a href = "addMembers.js">Name:</a></label>
         <input
           type = "text"
           name = "memName"
