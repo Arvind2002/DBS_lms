@@ -3,20 +3,19 @@ import Axios from 'axios'
 import React, { useEffect, useState } from "react"
 import BasicTable from '../components/BasicTable.js'
 import {acc_columns} from '../components/acc-columns.js'
-import {book_columns} from '../components/book-columns.js'
 
 const Accounts = () => {
     const [memName, setMemName] = useState("");
-    const [deleteID,setMemDeleteID] = useState(0);
     const [type, setType] = useState("");
-    //const [memList, setMemList] = useState([]);
+
+    const [deleteID,setMemDeleteID] = useState(0);
+
     const [memSearchName, setMemSearchName] = useState("");
     const [memSearchNameList, setMemSearchList] = useState([]);
+    
     const [updateID, setUpdateID] = useState("");
     const [updateType, setUpdateType] = useState(0);
     const [updateName, setUpdateName] = useState("");
- 
-
 
     const addMember = () => {
         console.log("In addMember() function")
@@ -50,6 +49,7 @@ const Accounts = () => {
         });
         console.log(memSearchNameList);
     }
+
     const updateMember = () => {
         if((updateType<1) || (updateType >4)){
             alert("Wrong account type!");
@@ -63,7 +63,7 @@ const Accounts = () => {
             console.log("successfully deleted");
         });
     };
-    //const memData = React.useMemo(() => memList);
+    
     const searchAccData = React.useMemo(()=>memSearchNameList);
 
     return(
@@ -72,7 +72,7 @@ const Accounts = () => {
             <h3>Account Details</h3>
 
             <div className="Information">
-                <label>Name:</label>
+                <label>Name: </label>
                 <input
                 type = "text"
                 name = "memName"
@@ -83,7 +83,7 @@ const Accounts = () => {
                 />
 
                 <br></br>
-                <label>Account Type:</label>
+                <label>Account Type: </label>
                 <input
                 type = "text"
                 name = "type"
@@ -100,7 +100,7 @@ const Accounts = () => {
                 <br></br>
                 <br></br>
                 <br></br>
-                <label>Search Account:</label>
+                <label>Search Account: </label>
                 <input
                     type = "text"
                     name = "memSearchName"
@@ -117,7 +117,8 @@ const Accounts = () => {
                 <BasicTable columns={acc_columns} data= {searchAccData}/>
                 <br></br>
                 <br></br>
-                <label>Delete Account:</label>
+                <h3>Delete Account</h3>
+                <label>Member ID: </label>
                 <input
                     type = "text"
                     name = "type"
@@ -134,7 +135,7 @@ const Accounts = () => {
                 <br></br>
                 <div className="Information">
                 <h3>Update account</h3>
-                <label>ID of account:</label>
+                <label>Member ID: </label>
                 <input
                 type = "text"
                 name = "memName"
@@ -144,7 +145,7 @@ const Accounts = () => {
                 }}
                 />
                 <br></br>
-                <label>New Name:</label>
+                <label>New Name: </label>
                 <input
                 type = "text"
                 name = "memName"
@@ -154,7 +155,7 @@ const Accounts = () => {
                 }}
                 />
                 <br></br>
-                <label>New Account Type ID:</label>
+                <label>New Account Type ID: </label>
                 <input
                 type = "text"
                 name = "type"
