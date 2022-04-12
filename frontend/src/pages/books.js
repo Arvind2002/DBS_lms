@@ -10,7 +10,6 @@ const Books = () => {
     const [pubName, setPubName] = useState("");
     const [genre, setGenre] = useState("");
     const [deleteID,setBookDeleteID] = useState(0);
-
     const [bookSearchName, setBookSearchName] = useState("");
     const [bookSearchNameList, setMemSearchList] = useState([]);
 

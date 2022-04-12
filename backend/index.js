@@ -39,6 +39,7 @@ app.post("/update_acc", (req, res) => {
   const name = req.body.updateName;
   const type = req.body.updateType;
   const sqlInsert = "update members set memName = ?, typeID = ? where memID = ?";
+
   db.query(
     sqlInsert,
     [name, type,id],
@@ -51,17 +52,6 @@ app.post("/update_acc", (req, res) => {
     }
   );
 });  
-
-app.get("/show_members", (req, res) => {
-  const sqlSelect = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID";
-  db.query(sqlSelect, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
 
 app.post("/delete_acc", (req, res) => {
   const deleteID = req.body.deleteID;
@@ -99,7 +89,6 @@ app.get("/search_members", (req, res) => {
   );
 });
 
-
 app.get("/show_rooms", (req, res) => {
   const sqlInsert = "SELECT * from rooms";
 
@@ -118,8 +107,8 @@ app.get("/show_rooms", (req, res) => {
 
 app.post("/book_room", (req, res) => {
   const roomID =  req.body.roomID;
-  const memID = req.body.memID; 
-  const hour = req.body.hour; 
+  const memID = req.body.memID;
+  const hour = req.body.hour;
   const q1 = "select memID from reservations where roomID = ? and hour = ?";
   const q2 = "insert into reservations values (?,?,?)";
   var bookedHour = 0;
@@ -151,8 +140,6 @@ app.post("/book_room", (req, res) => {
   }
 });
 
-
-
 app.get("/show_reservations", (req, res) => {
   const sqlInsert = "SELECT members.memId,memName,roomName, reservations.hour,startTime,endTime from reservations,members,rooms,timings where reservations.memID = members.memID and rooms.roomID = reservations.roomID and reservations.hour = timings.hour ";
   db.query(
@@ -167,6 +154,7 @@ app.get("/show_reservations", (req, res) => {
     }
   );
 });
+
 
 app.post("/delete_reservations", (req,res) => {
   const roomID = req.body.roomID;
@@ -187,6 +175,61 @@ app.post("/delete_reservations", (req,res) => {
   );
 });
 
+app.post("/add_book", (req, res) => {
+  const book_name = req.body.bookName;
+  const auth_name = req.body.authName;
+  const pub_name = req.body.pubName;
+  const genre = req.body.genre;
+  const sqlInsert = "INSERT INTO books (title, author, publisher, genre) values (?, ?, ?, ?);"
+
+  db.query(
+    sqlInsert,
+    [book_name, auth_name, pub_name, genre],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+});
+
+app.get("/search_books", (req, res) => {
+  const name = req.query.bookName;
+  const sym = "%";
+  const checkName = sym.concat(name, sym);
+  const sqlInsert = "SELECT bookID, title, author, publisher, books.genre, hall, shelf FROM books, locations where books.genre = locations.genre and title like ?";
+
+  db.query(
+    sqlInsert,
+    [checkName],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/del_book", (req, res) => {
+  const deleteID = req.body.deleteID;
+  const sqlInsert = "delete from books where bookID = ?";
+
+  db.query(
+    sqlInsert,
+    [deleteID],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+});
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");

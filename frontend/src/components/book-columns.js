@@ -18,5 +18,13 @@ export const book_columns = [
     {
         Header: 'Genre',
         accessor: 'genre'
+    },
+    {
+        Header: 'Hall',
+        accessor: 'hall'
+    },
+    {
+        Header: 'Shelf',
+        accessor: 'shelf'
     }
 ]

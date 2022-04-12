@@ -10,8 +10,8 @@ create table books(
 );
 
 create table locations(
-    hall int,
-    shelf int,
+    hall int default 5,
+    shelf int default 1,
     genre varchar(20) NOT NULL REFERENCES books(genre),
     PRIMARY KEY(hall, shelf)
 );
