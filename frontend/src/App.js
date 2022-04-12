@@ -8,8 +8,9 @@ import {book_columns} from './components/book-columns'
 
 function App() {
   const [memName, setMemName] = useState("");
+  const [deleteID,setMemDeleteID] = useState(0);
   const [type, setType] = useState("");
-  const [memList, setMemList] = useState([]);
+  //const [memList, setMemList] = useState([]);
   const [memSearchName, setMemSearchName] = useState("");
   const [memSearchNameList, setMemSearchList] = useState([]); 
 
@@ -28,14 +29,14 @@ function App() {
     });
   };
 
- const getMembers = () =>{
-   console.log("In getMembers() function")
-    Axios.get("http://localhost:3001/show_members").then((response) => {
-      setMemList(response.data);
-    });
-  }
-
-
+  const deleteMember = () => {
+  Axios.post("http://localhost:3001/delete_acc", {
+    deleteID: deleteID,
+  }).then(() => {
+    alert("Account deleted!");
+    console.log("successfully deleted");
+  });
+};
 
   const searchMembers = () =>{
     console.log(memSearchName)
@@ -53,10 +54,12 @@ function App() {
   <BasicTable columns={???} data={???}/>
   ) in between some divs to make the table work*/
 
-  const memData = React.useMemo(() => memList);
+  //const memData = React.useMemo(() => memList);
   const searchAccData = React.useMemo(()=>memSearchNameList);
   return (
+    
     <div className="App">
+    
       <h1>Library Management System</h1>
       <h3>Account Details</h3>
 
@@ -65,6 +68,7 @@ function App() {
         <input
           type = "text"
           name = "memName"
+          placeholder = "Enter your name"
           onChange={(event) => {
             setMemName(event.target.value);
           }}
@@ -75,6 +79,7 @@ function App() {
         <input
           type = "text"
           name = "type"
+          placeholder = "Platinum/Gold/Silver/Bronze"
           onChange={(event) => {
             setType(event.target.value);
           }}
@@ -83,18 +88,13 @@ function App() {
         <br></br>
         <button onClick={addMember}>Add Member</button>
         <br></br>
-        <button onClick={getMembers}>Show Members</button>
-        <br></br>
-        <br></br>
-        <BasicTable columns={acc_columns} data={memData}/>
-        <br></br>
         <br></br>
         <br></br>
         <label>Search Account:</label>
         <input
           type = "text"
           name = "memSearchName"
-          placeholder = "Enter Name of member"
+          placeholder = "Enter name of member"
           onChange={(event) => {
             setMemSearchName(event.target.value);
           }}
@@ -105,6 +105,19 @@ function App() {
         <br></br>
         <BasicTable columns={acc_columns} data= {searchAccData}/>
         <br></br>
+        <br></br>
+        <label>Delete Account:</label>
+        <input
+          type = "text"
+          name = "type"
+          placeholder = "Enter ID of account"
+          onChange={(event) => {
+            setMemDeleteID(event.target.value);
+          }}
+        />
+        
+        <br></br>
+        <button onClick={deleteMember}>Delete Member</button>
       </div>
     </div>
   );

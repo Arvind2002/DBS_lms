@@ -44,6 +44,34 @@ app.get("/show_members", (req, res) => {
   });
 });
 
+app.post("/delete_acc", (req, res) => {
+  const deleteID = req.body.deleteID;
+  const sqlInsert = "delete from members where memID = ?";
+
+  db.query(
+    sqlInsert,
+    [deleteID],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+});  
+
+app.get("/show_members", (req, res) => {
+  const sqlSelect = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID";
+  db.query(sqlSelect, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.get("/search_members", (req, res) => {
   const name = req.query.accName;
   const sym = "%";
