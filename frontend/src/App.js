@@ -10,7 +10,7 @@ function App() {
   const [memName, setMemName] = useState("");
   const [type, setType] = useState("");
   const [memList, setMemList] = useState([]);
-  const [mem_search_ID, setMemSearch] = useState(0); 
+  const [mem_search_ID, setMemSearch] = useState([]); 
 
   /////////////////////////////////
   const addMember = () => {
@@ -22,6 +22,7 @@ function App() {
       memName: memName,
       type: type,
     }).then(() => {
+      alert("Acount created!");
       console.log("successfully added");
     });
   };
@@ -33,11 +34,13 @@ function App() {
     });
   }
 
+
+
   const searchMembers = () =>{
     console.log(mem_search_ID);
-    Axios.put("http://localhost:3001/members_search",
-    {mem_search_ID: mem_search_ID,
-    }).then((response) => {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    Axios.get("http://localhost:3001/search_members").then((response) => {
       setMemSearch(response.data);
     });
   }
@@ -79,7 +82,12 @@ function App() {
         <br></br>
         <BasicTable columns={acc_columns} data={memData}/>
         <br></br>
-
+        <br></br>
+        <br></br>
+        <input id="searchbar" type="text"
+        name="search" placeholder="Search Accounts based on Name" onChange={(event) => {
+          setMemName(event.target.value);
+        }}/>
       </div>
     </div>
   );

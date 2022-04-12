@@ -30,10 +30,23 @@ select hall,shelf from locations,books where books.genre = locations.genre and b
 delete from books where bookID = input_ID;
 
 --8)Issue books(check if already issued)
+    start transaction
+    select * from issued where bookID = input_ID -- checks if the book is already issued
+    select count(*)-numBooks from acType,issued,members where actype.typeId = members.typeID and members.memID = issued.memID and members.memID = input_id;
+    --if result>0 book not issued insert into table  
+    insert into issued values(mem_id,book_id,curdate());
+    commit; 
 
---9)Return books
+--9) display names of the members who issued books along with the books the issued
+select numbooks-count(*) from acType,issued,members where actype.typeId = members.typeID and members.memID = issued.memID and members.memID = 1;
+
+--10)Return books
+    start transaction
+    delete from issued where issued.bookID = input_id;
+    commit
 
 --8)Calculate due
+    select penaltyPerWeek*DATEDIFF(curdate()-)
 
 --9)Book rooms(check for availability)
 
