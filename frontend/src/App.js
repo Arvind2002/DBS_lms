@@ -1,4 +1,3 @@
-//need to check for valid account type
 import './App.css';
 import Axios from 'axios'
 import React, { useEffect, useState } from "react"
@@ -39,18 +38,13 @@ function App() {
   const searchMembers = () =>{
     console.log(memSearchName)
     Axios.get("http://localhost:3001/search_members",{
-      params: 
+      params:
       {accName: memSearchName}
-    })
-    .then((response) => {
+    }).then((response) => {
       setMemSearchList(response.data);
     });
     console.log(memSearchNameList);
   }
-
-  /*add return (
-  <BasicTable columns={???} data={???}/>
-  ) in between some divs to make the table work*/
 
   return (
     <div className="App">
@@ -76,7 +70,9 @@ function App() {
             setType(event.target.value);
           }}
         />
-        
+      </div>
+
+      <div className="Tables">  
         <br></br>
         <button onClick={addMember}>Add Member</button>
         <br></br>
