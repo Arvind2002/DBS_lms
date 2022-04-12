@@ -28,10 +28,11 @@ create table acType(
 create table members(
     memID int PRIMARY KEY AUTO_INCREMENT,
     memName varchar(50),
-    typeID int REFERENCES acType(typeID)
+    typeID int check(typeID>0 and typeID<5) REFERENCES acType(typeID)
 );
 
 create table rooms(
+    roomID int PRIMARY KEY AUTO_INCREMENT,
     roomName varchar(20) PRIMARY KEY,
     costPerHour int
 );

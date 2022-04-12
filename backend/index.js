@@ -13,6 +13,7 @@ const db = mysql.createPool({
   user: 'root', 
   password: 'password',
   database: 'library',
+  //multipleStatements: true
 });
 
 app.post("/create_acc", (req, res) => {
@@ -97,7 +98,68 @@ app.get("/search_members", (req, res) => {
       }
     }
   );
-});  
+});
+
+
+app.get("/show_rooms", (req, res) => {
+  const sqlInsert = "SELECT * from rooms";
+
+  db.query(
+    sqlInsert,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/book_room", (req, res) => {
+  const roomID =  req.body.roomID;
+  const memID = req.body.memID; 
+  const hour = req.body.hour; 
+  const q1 = "select memID from reservations where roomID = ? and hour = ?";
+  const q2 = "insert into reservations values (?,?,?)";
+
+  var bookedHour = db.query(
+    q1,[roomID,hour],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+      }
+    }
+  );
+
+  if(bookedHour != null){
+    db.query(
+      q2,[roomID,memID,hour],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(res);
+        }
+      }
+    );
+  }
+  else{
+    res.send("slot already booked");
+  }
+});
+
+app.post('/book_room', async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");
