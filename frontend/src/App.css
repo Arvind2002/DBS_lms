@@ -1,4 +1,7 @@
 .App {
+  width: 960px;
+  margin: 0 auto;
+  padding: 20px;
   text-align: center;
 }
 
@@ -16,7 +19,10 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+}
 
+html {
+  box-sizing: border-box;
 }
 
 input {
@@ -25,7 +31,6 @@ input {
   font-size: 20px;
   padding-left: 10px;
   margin: 5px;
-
 }
 
 button {
@@ -52,4 +57,53 @@ th {
   
 td {
   text-align: center;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  background-color: black;
+  margin-bottom: 20px;
+}
+
+nav li {
+  padding: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+h1 {
+  font-family: Calibri, sans-serif;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-family: Calibri, sans-serif;
+}
+
+h3 {
+  font-family: Calibri, sans-serif;
+}
+
+p {
+  font-family: Calibri, sans-serif;
+  margin-bottom: 15px;
+  color: lightblue;
+}
+
+li{
+  font-family: Calibri, sans-serif;
+}
+
+label{
+  font-family: Calibri, sans-serif;
 }
