@@ -75,7 +75,7 @@ app.get("/search_members", (req, res) => {
   const name = req.query.accName;
   const sym = "%";
   const checkName = sym.concat(name,sym);
-  const sqlInsert = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID and memName like?";
+  const sqlInsert = "SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID and memName like ?";
 
   db.query(
     sqlInsert,
@@ -141,7 +141,7 @@ app.post("/book_room", (req, res) => {
 });
 
 app.get("/show_reservations", (req, res) => {
-  const sqlInsert = "SELECT members.memId,memName,roomName, reservations.hour,startTime,endTime from reservations,members,rooms,timings where reservations.memID = members.memID and rooms.roomID = reservations.roomID and reservations.hour = timings.hour ";
+  const sqlInsert = "SELECT members.memId,memName,roomName, reservations.hour,startTime,endTime from reservations,members,rooms,timings where reservations.memID = members.memID and rooms.roomID = reservations.roomID and reservations.hour = timings.hour";
   db.query(
     sqlInsert,
     (err, result) => {

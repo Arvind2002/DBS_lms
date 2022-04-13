@@ -1,3 +1,4 @@
+--DATABASE CREATION
 drop database if exists library;
 create database library;
 use library;
@@ -100,4 +101,84 @@ insert into locations values(4, 1, 'Comedy');
 insert into locations values(4, 2, 'Children');
 insert into locations values(4, 3, 'Self Help');
 insert into locations values(4, 4, 'Philosophy');
+commit;
+
+--QUERIES USED
+--create account
+start transaction;
+INSERT INTO members (memName, typeID) select ?, typeID from acType where typeName = ?;
+commit;
+
+--update account
+start transaction;
+update members set memName = ?, typeID = (select typeID from acType where typeName = ?) where memID = ?;
+commit;
+
+--delete account
+start transaction;
+delete from members where memID = ?;
+commit;
+
+--search members
+start transaction;
+SELECT memID, memName, typeName FROM members, acType where acType.typeID = members.typeID and memName like ?;
+commit;
+
+--display rooms
+start transaction;
+SELECT * from rooms;
+commit;
+
+--book room
+start transaction;
+select memID from reservations where roomID = ? and hour = ?;
+insert into reservations values (?,?,?);
+commit;
+
+--show reservations
+start transaction;
+SELECT members.memId,memName,roomName, reservations.hour,startTime,endTime from reservations,members,rooms,timings where reservations.memID = members.memID and rooms.roomID = reservations.roomID and reservations.hour = timings.hour;
+commit;
+
+--delete reservations
+start transaction;
+delete from reservations where roomID = ? and memID = ? and hour = ?;
+commit;
+
+--add books
+start transaction;
+INSERT INTO books (title, author, publisher, genre) values (?, ?, ?, ?);
+commit;
+
+--search books
+start transaction;
+SELECT bookID, title, author, publisher, books.genre, hall, shelf FROM books, locations where books.genre = locations.genre and title like ?;
+commit;
+
+--delete books
+start transaction;
+delete from books where bookID = ?;
+commit;
+
+--show issued books
+start transaction;
+select members.memID, memName, title, author, dateOfIssue, (DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY)) as dateOfReturn from issued, members, books, acType where issued.bookID = books.bookID and acType.typeID = members.typeID and issued.memID = members.memID and issued.memID = ?;
+commit;
+
+--calculate dues
+start transaction;
+select sum(penaltyperweek*(ceil(DATEDIFF(curdate(),DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY))/7))) as due from issued,acType,members where issued.memID = members.memID and members.typeID = acType.typeID and issued.memID = ?;
+commit;
+
+--return book
+start transaction;
+delete from issued where bookID = ?;
+commit;
+
+--issue book
+start transaction;
+select * from issued where bookID = ?;
+select count(*) - numBooks from acType,issued,members where actype.typeId = members.typeID and members.memID = issued.memID and members.memID = input_id;
+    --if result>0 book not issued insert into table  
+insert into issued values (?,?,curdate());
 commit;
