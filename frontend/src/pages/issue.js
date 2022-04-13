@@ -92,7 +92,6 @@ const Issue = () => {
             <button onClick={newIssue}>Issue Book</button>
             <br></br>
             <br></br>
-            <br></br>
             <h3>Books Issued by a Member</h3>
             <br></br>
             <label>Member ID: </label>
@@ -124,7 +123,6 @@ const Issue = () => {
                 }}
             />
             <br></br>
-            <br></br>
             <button onClick={returnBook}>Return Book</button>
             <br></br>
             <br></br>
@@ -150,7 +148,6 @@ const Issue = () => {
                         setDues(event.target.value);
                     }}
                 />
-                <br></br>
                 <br></br>
                 <button onClick={calcDues}>Calculate Dues</button>
                 <br></br>    

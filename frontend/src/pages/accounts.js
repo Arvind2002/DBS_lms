@@ -140,7 +140,7 @@ const Accounts = () => {
                     }}
                 />
                 <br></br>
-                <button onClick={deleteMember}>Delete Member</button>
+                <button onClick={deleteMember}>Delete Account</button>
                 <br></br>
             </div>  
 
@@ -167,7 +167,7 @@ const Accounts = () => {
                 }}
                 />
                 <br></br>
-                <label>New Account Type: </label>
+                <label>New account type: </label>
                 <input
                 type = "text"
                 name = "type"
@@ -178,7 +178,7 @@ const Accounts = () => {
                 }}
                 />
                 <br></br>
-                <button onClick={updateMember}>Update Member</button>
+                <button onClick={updateMember}>Update Account</button>
             </div>
         </div>
     );
