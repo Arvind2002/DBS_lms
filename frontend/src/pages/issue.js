@@ -67,7 +67,7 @@ const Issue = () => {
     return(
         <div>
             <h1>Issue books</h1>
-            <label>Enter member ID: </label>
+            <label>Member ID: </label>
             <input
                     type = "text"
                     name = "memID"
@@ -78,7 +78,7 @@ const Issue = () => {
                     }}
                 />
             <br></br>
-            <label>Enter book ID: </label>
+            <label>Book ID: </label>
             <input
                     type = "text"
                     name = "memID"
@@ -95,7 +95,7 @@ const Issue = () => {
             <br></br>
             <h3>Books Issued by a Member</h3>
             <br></br>
-            <label>Enter member ID: </label>
+            <label>Member ID: </label>
             <input
                     type = "text"
                     name = "memID"
@@ -113,7 +113,7 @@ const Issue = () => {
             <br></br>
             <br></br>
             <h1>Return Book</h1>
-            <label>Enter book ID: </label>
+            <label>Book ID: </label>
             <input
                 type = "text"
                 name = "Dues"
@@ -128,8 +128,8 @@ const Issue = () => {
             <button onClick={returnBook}>Return Book</button>
             <br></br>
             <br></br>
-            <h1>Find Dues</h1>
-            <label>Enter member ID: </label>
+            <h1>Find Overdue</h1>
+            <label>Member ID: </label>
             <input
                     type = "text"
                     name = "memID"
@@ -140,7 +140,7 @@ const Issue = () => {
                     }}
                 />
                 <br></br>
-            <label>Your dues: </label>
+            <label>Amount overdue: </label>
             <input
                     type = "text"
                     name = "Dues"

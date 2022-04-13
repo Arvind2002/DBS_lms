@@ -71,29 +71,27 @@ const Rooms = () => {
             <body onLoad={showRooms()}>
                 <BasicTable columns={room_columns} data= {showAllRooms}/>
                 <br></br>
-                <label>Enter ID of room to be booked: </label>
+                <label>Room ID to be booked: </label>
                 <input
                     type = "text"
                     name = "roomID"
                     id = "room"
-                    placeholder = "enter room ID"
                     onChange={(event) => {
                         setBookRoomID(event.target.value);
                     }}
                 />
                 <br></br>
-                <label>Enter member ID: </label>
+                <label>Member ID: </label>
                 <input
                     type = "text"
                     name = "memID"
                     id = "member"
-                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setBookMemID(event.target.value);
                     }}
                 />
                 <br></br>
-                <label>Enter hour to be booked: </label>
+                <label>Hour to be booked: </label>
                 <input
                     type = "text"
                     name = "hour"
@@ -118,18 +116,17 @@ const Rooms = () => {
                 <br></br>
                 <h3>List of Reservations</h3>
                 <br></br>
-                <label>Enter member ID: </label>
+                <label>Member ID: </label>
                 <input
                     type = "text"
                     name = "memID"
                     id = "delMemBox"
-                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setDelMemID(event.target.value);
                     }}
                 />
                 <br></br>
-                <label>Enter room ID to be cancelled: </label>
+                <label>Room ID to be cancelled: </label>
                 <input
                     type = "text"
                     name = "roomID"
@@ -140,7 +137,7 @@ const Rooms = () => {
                     }}
                 />
                 <br></br>
-                <label>Enter the hour to be cancelled: </label>
+                <label>Hour to be cancelled: </label>
                 <input
                     type = "text"
                     name = "memID"

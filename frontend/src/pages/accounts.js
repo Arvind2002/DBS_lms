@@ -86,7 +86,6 @@ const Accounts = () => {
                 type = "text"
                 name = "memName"
                 id = "addName"
-                placeholder = "enter your name"
                 onChange={(event) => {
                     setMemName(event.target.value);
                 }}
@@ -111,12 +110,11 @@ const Accounts = () => {
             <div className="Search">
                 <br></br>
                 <h3>Search Members</h3>
-                <label>Search Account: </label>
+                <label>Member name: </label>
                 <input
                     type = "text"
                     name = "memSearchName"
                     id = "searchName"
-                    placeholder = "enter member name"
                     onChange={(event) => {
                         setMemSearchName(event.target.value);
                     }}
@@ -137,7 +135,6 @@ const Accounts = () => {
                     type = "text"
                     name = "type"
                     id = "delID"
-                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setMemDeleteID(event.target.value);
                     }}
@@ -155,18 +152,16 @@ const Accounts = () => {
                 type = "text"
                 name = "memName"
                 id = "updateID"
-                placeholder = "enter your ID"
                 onChange={(event) => {
                     setUpdateID(event.target.value);
                 }}
                 />
                 <br></br>
-                <label>New Name: </label>
+                <label>New member name: </label>
                 <input
                 type = "text"
                 name = "memName"
                 id = "updateName"
-                placeholder = "enter your name"
                 onChange={(event) => {
                     setUpdateName(event.target.value);
                 }}

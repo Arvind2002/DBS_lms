@@ -40,11 +40,17 @@ input {
 }
 
 button {
-  width: 320px;
-  height: 50px;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
   font-size: 14px;
+  width: 280px;
+  height: 50px;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 4px;
   font-weight: bold;
-
   background-color: #AC3B61;
   padding: 14px 40px;
   text-decoration: none;
@@ -52,10 +58,15 @@ button {
   cursor: pointer;
   margin-top: 15px;
   color: #EEE2DC;
-} 
+}
+
+button:active {
+  border-style: outset;
+}
 
 button:hover {
   cursor: pointer;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
 }
 
 table {
