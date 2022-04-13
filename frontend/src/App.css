@@ -1,5 +1,5 @@
 .App {
-  width: 960px;
+  width: 1860px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
@@ -95,7 +95,7 @@ nav ul {
   text-align: center;
   width: 100%;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 nav li {
