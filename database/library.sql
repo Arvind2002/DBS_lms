@@ -1,3 +1,4 @@
+drop database library;
 create database library;
 use library;
 
@@ -22,7 +23,7 @@ create table acType(
     cost int,
     numBooks int,
     duration int,
-    penatlyPerWeek int
+    penaltyPerWeek int
 );
 
 create table members(
@@ -33,7 +34,7 @@ create table members(
 
 create table rooms(
     roomID int PRIMARY KEY AUTO_INCREMENT,
-    roomName varchar(20) PRIMARY KEY,
+    roomName varchar(20),
     costPerHour int
 );
 
@@ -41,7 +42,7 @@ create table issued(
     bookID int REFERENCES books(bookID),
     memID int REFERENCES members(memID),
     dateOfIssue DATE,
-    PRIMARY KEY(bookID, memID)
+    PRIMARY KEY(bookID)
 );
 
 create table timings(
@@ -73,14 +74,14 @@ insert into timings values(6, '15:00:00', '15:50:00');
 insert into timings values(7, '16:00:00', '16:50:00');
 insert into timings values(8, '17:00:00', '17:50:00');
 
-insert into rooms values('Brainstorm', 100);
-insert into rooms values('Group Discussion', 120);
-insert into rooms values('Presentation', 150);
-insert into rooms values('Innovation Zone', 110);
-insert into rooms values('Ideation Zone', 110);
-insert into rooms values('Tinker Lab', 200);
-insert into rooms values('Computer Lab', 180);
-insert into rooms values('Art Studio', 160);
+insert into rooms values(1,'Brainstorm', 100);
+insert into rooms values(2,'Group Discussion', 120);
+insert into rooms values(3,'Presentation', 150);
+insert into rooms values(4,'Innovation Zone', 110);
+insert into rooms values(5,'Ideation Zone', 110);
+insert into rooms values(6,'Tinker Lab', 200);
+insert into rooms values(7,'Computer Lab', 180);
+insert into rooms values(8,'Art Studio', 160);
 
 insert into locations values(1, 1, 'Journal');
 insert into locations values(1, 2, 'Newspapers');

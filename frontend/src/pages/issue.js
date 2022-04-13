@@ -28,7 +28,7 @@ const Issue = () => {
     const newIssue = () =>{
         Axios.post("http://localhost:3001/issue",{bookID: newIssueBookID, memID: newIssueMemID
         }).then((response) => {
-
+            alert(response);
         });
         document.getElementById("newMem").value = "";
         document.getElementById("newBook").value = "";

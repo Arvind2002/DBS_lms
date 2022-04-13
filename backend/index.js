@@ -252,7 +252,7 @@ app.get("/show_issues",(req,res) => {
 
 app.get("/calc_dues",(req,res) => {
   const memID = req.query.memID;
-  const query = "select sum(penatlyperweek*(ceil(DATEDIFF(curdate(),DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY))/7))) as due from issued,acType,members where issued.memID = members.memID and members.typeID = acType.typeID and issued.memID = ?";
+  const query = "select sum(penaltyperweek*(ceil(DATEDIFF(curdate(),DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY))/7))) as due from issued,acType,members where issued.memID = members.memID and members.typeID = acType.typeID and issued.memID = ?";
 
   var cost  = db.query(
     query, [memID],
@@ -290,13 +290,26 @@ app.post("/issue", (req,res) => {
   const memID = req.body.memID;
   const bookID = req.body.bookID;
   const q1 = "select * from issued where bookID = ?";
+  const q2 = "insert into issued values (?,?,curdate())";
   db.query(
     q1,
     [bookID],
     (err, result) => {
       if (err) {
         console.log(err);
-      } else {
+        res.send(err);
+      }else {
+        if (res  && res.length > 0){
+          console.log("duplicate");
+        }else{
+          db.query(
+          q2,[bookID,memID],
+          (err, result) => {
+            if(err){
+              console.log(err);
+            }
+          }
+          )}
       }
     }
   );
