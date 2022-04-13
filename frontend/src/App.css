@@ -61,12 +61,23 @@ button:hover {
 table {
   font-family: Calibri, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  align-items: center;
+  text-align: center;
+  justify-items: center;
+  margin-left: 25vw;
+  margin-right: 25vw;
+  width: 50%;
 }
   
 td, th {
+  padding-left: 500px;
+  padding-left: 500px;
+
   border: 1px solid black;
   padding: 8px;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
 }
 
 tr:nth-child(even){background-color: #BAB2B5;}
