@@ -32,6 +32,7 @@ const Rooms = () => {
     const displayReservations = () =>{
         Axios.get("http://localhost:3001/show_reservations")
         .then((response) => {
+
             setShowReservations(response.data);
             console.log(response);
         });

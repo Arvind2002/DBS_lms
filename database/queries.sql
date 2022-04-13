@@ -30,8 +30,8 @@ select hall,shelf from locations,books where books.genre = locations.genre and b
 delete from books where bookID = input_ID;
 
 --8)Issue books(check if already issued)
-    start transaction
-    select * from issued where bookID = input_ID -- checks if the book is already issued
+    start transaction;
+    select * from issued where bookID = input_ID; -- checks if the book is already issued
     select count(*)-numBooks from acType,issued,members where actype.typeId = members.typeID and members.memID = issued.memID and members.memID = input_id;
     --if result>0 book not issued insert into table  
     insert into issued values(mem_id,book_id,curdate());
@@ -46,7 +46,12 @@ select numbooks-count(*) from acType,issued,members where actype.typeId = member
     commit
 
 --8)Calculate due
-    select penaltyPerWeek*DATEDIFF(curdate()-)
+select penatlyperweek*(ceil(DATEDIFF(curdate(),DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY))/7)) from issued,acType,members where issued.memID = members.memID and members.typeID = acType.typeID and issued.bookID = ? and issued.memID = ?;
 
 --9)Book rooms(check for availability)
+start transaction;
+select memID from reservations where roomID = ? and hour = ?; --if value returned continue
+insert into reservations values (?,?,?);
+commit;
+
 
