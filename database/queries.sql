@@ -3,8 +3,6 @@
 select * from books where genre like "%genre%";
 ----c)Author
 select * from books where author like "%author%";
-----d)Find location of books
-select hall,shelf from locations,books where books.genre = locations.genre and books.title like "%name%"; -- need to raise flags
 
 --8)Issue books(check if already issued)
     start transaction;
