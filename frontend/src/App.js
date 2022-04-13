@@ -9,6 +9,7 @@ import Accounts from './pages/accounts';
 import Books from './pages/books';
 import Home from './pages/home';
 import Rooms from './pages/rooms';
+import Issue from './pages/issue';
 
 function App() {
   const [memName, setMemName] = useState("");
@@ -63,6 +64,7 @@ function App() {
         <Route element = {<Accounts />} path = "/accounts" />
         <Route element = {<Books />} path = "/books" />
         <Route element = {<Rooms />} path = "/rooms" />
+        <Route element = {<Issue />} path = "/issue" />
       </Routes>
     </div>
   );

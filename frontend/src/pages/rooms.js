@@ -48,6 +48,11 @@ const Rooms = () => {
         }).then((response) => {
             console.log(response);
         });
+        document.getElementById("room").value = "";
+        document.getElementById("member").value = "";
+        document.getElementById("hour").value = "";
+
+
     };
 
     const deleteReservations = () =>{
@@ -58,6 +63,11 @@ const Rooms = () => {
         }).then((response) => {
             console.log("deleted");
         })
+        document.getElementById("delRoomBox").value = "";
+        document.getElementById("delMemBox").value = "";
+        document.getElementById("delHourBox").value = "";
+
+
     };
 
     const showAllRooms = React.useMemo(()=>showRoomsName);
@@ -80,6 +90,7 @@ const Rooms = () => {
                 <input
                     type = "text"
                     name = "roomID"
+                    id = "room"
                     placeholder = "Enter room ID"
                     onChange={(event) => {
                         setBookRoomID(event.target.value);
@@ -90,6 +101,7 @@ const Rooms = () => {
                 <input
                     type = "text"
                     name = "memID"
+                    id = "member"
                     placeholder = "Enter member ID"
                     onChange={(event) => {
                         setBookMemID(event.target.value);
@@ -100,6 +112,7 @@ const Rooms = () => {
                 <input
                     type = "text"
                     name = "hour"
+                    id = "hour"
                     placeholder = "Enter an hour from 1-8"
                     onChange={(event) => {
                         setHour(event.target.value);
@@ -125,6 +138,7 @@ const Rooms = () => {
                 <input
                     type = "text"
                     name = "memID"
+                    id = "delMemBox"
                     placeholder = "Enter member ID"
                     onChange={(event) => {
                         setDelMemID(event.target.value);
@@ -135,6 +149,7 @@ const Rooms = () => {
                 <input
                     type = "text"
                     name = "roomID"
+                    id = "delRoomBox"
                     placeholder = "Enter room ID"
                     onChange={(event) => {
                         setDelRoomID(event.target.value);
@@ -145,6 +160,7 @@ const Rooms = () => {
                 <input
                     type = "text"
                     name = "memID"
+                    id = "delHourBox"
                     placeholder = "Enter hour"
                     onChange={(event) => {
                         setDelHour(event.target.value);

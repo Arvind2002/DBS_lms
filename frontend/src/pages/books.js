@@ -23,6 +23,11 @@ const Books = () => {
         }).then(() => {
             console.log("successfully added!");
         });
+        document.getElementById("addBook").value = "";
+        document.getElementById("addAuth").value = "";
+        document.getElementById("addPub").value = "";
+        document.getElementById("addGenre").value = "";
+
     }
 
     const searchBooks = () =>{
@@ -35,6 +40,8 @@ const Books = () => {
             setMemSearchList(response.data);
         });
         console.log(bookSearchNameList);
+        document.getElementById("searchName").value = "";
+
     }
 
     const deleteBook = () => {
@@ -44,6 +51,8 @@ const Books = () => {
             alert("Book deleted!");
             console.log("successfully deleted");
         });
+        document.getElementById("delID").value = "";
+
     };
 
     const searchBookData = React.useMemo(()=> bookSearchNameList);
@@ -57,6 +66,7 @@ const Books = () => {
                 <input
                 type = "text"
                 name = "bookName"
+                id = "addBook"
                 placeholder = "enter book name"
                 onChange={(event) => {
                     setBookName(event.target.value);
@@ -68,6 +78,7 @@ const Books = () => {
                 <input
                 type = "text"
                 name = "authName"
+                id = "addAuth"
                 placeholder = "enter author name"
                 onChange={(event) => {
                     setAuthName(event.target.value);
@@ -79,6 +90,7 @@ const Books = () => {
                 <input
                 type = "text"
                 name = "pubName"
+                id = "addPub"
                 placeholder = "enter publisher name"
                 onChange={(event) => {
                     setPubName(event.target.value);
@@ -90,6 +102,7 @@ const Books = () => {
                 <input
                 type = "text"
                 name = "genre"
+                id = "addGen"
                 placeholder = "enter genre"
                 onChange={(event) => {
                     setGenre(event.target.value);
@@ -108,6 +121,7 @@ const Books = () => {
                 <input
                     type = "text"
                     name = "bookSearchName"
+                    id = "searchName"
                     placeholder = "enter book name"
                     onChange={(event) => {
                         setBookSearchName(event.target.value);
@@ -128,6 +142,7 @@ const Books = () => {
                 <input
                     type = "text"
                     name = "bookID"
+                    id = "delID"
                     placeholder = "enter book ID"
                     onChange={(event) => {
                         setBookDeleteID(event.target.value);
