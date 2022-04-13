@@ -9,6 +9,7 @@ export default function Navbar() {
                 <li><Link to = "/accounts">Accounts</Link></li>
                 <li><Link to = "/books">Books</Link></li>
                 <li><Link to = "/rooms">Room Booking</Link></li>
+                <li><Link to = "/issue">Issue/Return Book</Link></li>
             </ul>
         </nav>
     </header>

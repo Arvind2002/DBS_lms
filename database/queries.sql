@@ -8,7 +8,7 @@ select ifNULL(*,"Name not found") from members where memID = INPUT_ID; -- need t
 select * from members where memName like "%INPUT_Name%"; -- need to raise flags
 
 --3)Upgrade/Downgrade members
-update memebers set typeID = new_typeID where memID = thisID; -- typeID BT  
+update members set typeID = new_typeID, where memID = thisID; -- typeID BT  
 
 --4)Delete memebers
 delete members where memID = thisID

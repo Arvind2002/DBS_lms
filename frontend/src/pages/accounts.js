@@ -26,6 +26,8 @@ const Accounts = () => {
         }).then(() => {
             console.log("successfully added!");
         });
+        document.getElementById("addName").value = "";
+        document.getElementById("addType").value = "";
     };
 
     const deleteMember = () => {
@@ -35,6 +37,8 @@ const Accounts = () => {
             alert("Account deleted!");
             console.log("successfully deleted");
         });
+        document.getElementById("delID").value = "";
+
     };
 
     const searchMembers = () =>{
@@ -46,6 +50,8 @@ const Accounts = () => {
             setMemSearchList(response.data);
         });
         console.log(memSearchNameList);
+        document.getElementById("searchName").value = "";
+
     }
 
     const updateMember = () => {
@@ -60,6 +66,10 @@ const Accounts = () => {
             alert("Account deleted!");
             console.log("successfully deleted");
         });
+        document.getElementById("updateID").value = "";
+        document.getElementById("updateName").value = "";
+        document.getElementById("updateType").value = "";
+
     };
     
     const searchAccData = React.useMemo(()=>memSearchNameList);
@@ -75,6 +85,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "memName"
+                id = "addName"
                 placeholder = "enter your name"
                 onChange={(event) => {
                     setMemName(event.target.value);
@@ -86,6 +97,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "type"
+                id = "addType"
                 placeholder = "platinum/gold/silver/bronze"
                 onChange={(event) => {
                     setType(event.target.value);
@@ -103,6 +115,7 @@ const Accounts = () => {
                 <input
                     type = "text"
                     name = "memSearchName"
+                    id = "searchName"
                     placeholder = "enter member name"
                     onChange={(event) => {
                         setMemSearchName(event.target.value);
@@ -123,6 +136,7 @@ const Accounts = () => {
                 <input
                     type = "text"
                     name = "type"
+                    id = "delID"
                     placeholder = "enter member ID"
                     onChange={(event) => {
                         setMemDeleteID(event.target.value);
@@ -140,6 +154,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "memName"
+                id = "updateID"
                 placeholder = "enter your ID"
                 onChange={(event) => {
                     setUpdateID(event.target.value);
@@ -150,6 +165,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "memName"
+                id = "updateName"
                 placeholder = "enter your name"
                 onChange={(event) => {
                     setUpdateName(event.target.value);
@@ -160,6 +176,7 @@ const Accounts = () => {
                 <input
                 type = "text"
                 name = "type"
+                id = "updateType"
                 placeholder = "1-platinum; 2-gold; 3-silver; 4-bronze"
                 onChange={(event) => {
                     setUpdateType(event.target.value);

@@ -13,6 +13,7 @@ const db = mysql.createPool({
   user: 'root', 
   password: 'password',
   database: 'library',
+  dateStrings: 'date',
   //multipleStatements: true
 });
 
@@ -155,6 +156,7 @@ app.get("/show_reservations", (req, res) => {
   );
 });
 
+
 app.post("/delete_reservations", (req,res) => {
   const roomID = req.body.roomID;
   const memID = req.body.memID;
@@ -224,6 +226,43 @@ app.post("/del_book", (req, res) => {
       if (err) {
         console.log(err);
       } else {
+        console.log(result);
+      }
+    }
+  );
+});
+
+app.get("/show_issues",(req,res) => {
+  const id = req.query.memID;
+  const query = "select members.memID, memName, title, author, dateOfIssue, (DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY)) as dateOfReturn from issued, members, books, acType where issued.bookID = books.bookID and acType.typeID = members.typeID and issued.memID = members.memID and issued.memID = ?";
+
+  db.query(
+    query,[id],
+    (err,result) => {
+      if(err) {
+        console.log(err);
+      }
+      else{
+        res.send(result);
+        console.log(result);
+      }
+    }
+  );
+});
+
+app.get("/calc_dues",(req,res) => {
+  const memID = req.query.memID;
+  const bookID = req.query.bookID;
+  const query = "select members.memID, memName, title, author, dateOfIssue, (DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY)) as dateOfReturn from issued, members, books, acType where issued.bookID = books.bookID and acType.typeID = members.typeID and issued.memID = members.memID and issued.memID = ?";
+
+  db.query(
+    query,[id],
+    (err,result) => {
+      if(err) {
+        console.log(err);
+      }
+      else{
+        res.send(result);
         console.log(result);
       }
     }
