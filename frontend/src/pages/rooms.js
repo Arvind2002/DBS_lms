@@ -12,11 +12,7 @@ const Rooms = () => {
     const [bookRoomID, setBookRoomID] = useState(0);
     const [bookMemID, setBookMemID] = useState(0);
     const [bookHour, setHour] = useState(0);
-
-
     const [bookRoomsList, setBookRoomList] = useState([]);
-
-
 
     const showRooms = () =>{
         Axios.get("http://localhost:3001/show_rooms")
@@ -82,7 +78,6 @@ const Rooms = () => {
                         setHour(event.target.value);
                     }}
                 />
-
 
                 <br></br>
                 <button onClick={bookRoom}>Book Room</button>
