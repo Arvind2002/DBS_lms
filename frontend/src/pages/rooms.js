@@ -16,13 +16,10 @@ const Rooms = () => {
     const [bookMemID, setBookMemID] = useState(0);
     const [bookHour, setHour] = useState(0);
     const [bookRoomsList, setBookRoomList] = useState([]);
-<<<<<<< HEAD
-=======
     const [delRoomID, setDelRoomID] = useState(0);
     const [delMemID, setDelMemID] = useState(0); 
     const [delHour, setDelHour] = useState(0);
 
->>>>>>> 13a13b0423c3d4dbede815e18be655257f627229
 
     const showRooms = () =>{
         Axios.get("http://localhost:3001/show_rooms")
@@ -89,7 +86,7 @@ const Rooms = () => {
                 <br></br>
                 <br></br>
                 <br></br>
-                <label>Enter ID of the room you want to book:</label>
+                <label>Enter ID of room you want to book: </label>
                 <input
                     type = "text"
                     name = "roomID"
