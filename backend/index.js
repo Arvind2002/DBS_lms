@@ -252,22 +252,57 @@ app.get("/show_issues",(req,res) => {
 
 app.get("/calc_dues",(req,res) => {
   const memID = req.query.memID;
-  const bookID = req.query.bookID;
-  const query = "select penatlyperweek*(ceil(DATEDIFF(curdate(),DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY))/7)) from issued,acType,members where issued.memID = members.memID and members.typeID = acType.typeID and issued.bookID = ? and issued.memID = ?";
+  const query = "select sum(penatlyperweek*(ceil(DATEDIFF(curdate(),DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY))/7))) as due from issued,acType,members where issued.memID = members.memID and members.typeID = acType.typeID and issued.memID = ?";
 
-  db.query(
-    query, [bookID,memID],
+  var cost  = db.query(
+    query, [memID],
     (err,result) => {
       if(err) {
         console.log(err);
       }
       else{
+        //console.log(result);
         res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/ret_books", (req, res) => {
+  const ID = req.body.bookID;
+  console.log(ID);
+  const sqlInsert = "delete from issued where bookID = ?";
+
+  db.query(
+    sqlInsert,
+    [ID],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
         console.log(result);
       }
     }
   );
 });
+
+app.post("/issue", (req,res) => {
+  const memID = req.body.memID;
+  const bookID = req.body.bookID;
+  const q1 = "select * from issued where bookID = ?";
+  db.query(
+    q1,
+    [bookID],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+      }
+    }
+  );
+
+});
+
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");
