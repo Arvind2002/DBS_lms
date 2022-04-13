@@ -32,8 +32,9 @@ body {
 input {
   width: 250px;
   height: 36px;
-  font-size: 16px;
-  margin: 6px;
+  display: inline-block;
+  font-size: 14px;
+  margin: 5px;
   padding: 12px 12px;
   box-sizing: border-box;
 }
@@ -42,7 +43,7 @@ button {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 16px;
   width: 280px;
   height: 50px;
   white-space: nowrap;
@@ -69,7 +70,7 @@ button:hover {
 }
 
 table {
-  font-family: Calibri, sans-serif;
+  font-family: Verdana;
   border-collapse: collapse;
   align-items: center;
   text-align: center;
@@ -77,6 +78,8 @@ table {
   margin-left: 25vw;
   margin-right: 25vw;
   width: 50%;
+  color: #123C69;
+  font-size: 14px;
 }
   
 td, th {
@@ -126,40 +129,46 @@ nav li {
 nav ul li a {
   color: #AC3B61;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   text-decoration: none;
 }
 
 h1 {
-  font-family: Calibri, sans-serif;
+  font-family: Verdana;
   font-size: 28px;
   margin-bottom: 20px;
   color: #123C69;
 }
 
 h2 {
-  font-family: Calibri, sans-serif;
+  font-family: Verdana;
   font-size: 24px;
   color: #123C69;
 }
 
 h3 {
-  font-family: Calibri, sans-serif;
+  font-family: Verdana;
   font-size: 18px;
   color: #123C69;
 }
 
 p {
-  font-family: Calibri, sans-serif;
+  font-family: Verdana;
   margin-bottom: 15px;
 }
 
 li{
-  font-family: Calibri, sans-serif;
-  font-size: 16px;
+  font-family: Verdana;
+  font-size: 14px;
 }
 
 label{
-  font-family: Calibri, sans-serif;
-  font-size: 16px;
+  font-family: Verdana;
+  font-size: 14px;
+  display: inline-block;
+  text-align: right;
+  clear: left;
+  width: 200px;
+  text-align: right;
+  color: #123C69;
 }
