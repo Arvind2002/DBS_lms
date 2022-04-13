@@ -8,7 +8,7 @@ export const room_columns = [
         accessor: 'roomName'
     },
     {
-        Header: 'CostPerHour',
+        Header: 'Cost Per Hour',
         accessor: 'costPerHour'
     },
 

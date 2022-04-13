@@ -2,8 +2,6 @@ import '../App.css';
 import Axios from 'axios'
 import React, { useEffect, useState } from "react"
 import BasicTable from '../components/BasicTable.js'
-import {acc_columns} from '../components/acc-columns.js'
-import {book_columns} from '../components/book-columns.js'
 import {room_columns} from '../components/room-columns.js'
 import {reserved_columns} from '../components/reserved-columns.js'
 
@@ -11,7 +9,6 @@ import {reserved_columns} from '../components/reserved-columns.js'
 const Rooms = () => {
     const [showRoomsName, setShowRoomsName] = useState([]);
     const [showReservations, setShowReservations] = useState([]);
-
     const [bookRoomID, setBookRoomID] = useState(0);
     const [bookMemID, setBookMemID] = useState(0);
     const [bookHour, setHour] = useState(0);
@@ -25,14 +22,12 @@ const Rooms = () => {
         Axios.get("http://localhost:3001/show_rooms")
         .then((response) => {
             setShowRoomsName(response.data);
-            console.log(response);
         });
     }
 
     const displayReservations = () =>{
         Axios.get("http://localhost:3001/show_reservations")
         .then((response) => {
-
             setShowReservations(response.data);
             console.log(response);
         });
@@ -52,8 +47,6 @@ const Rooms = () => {
         document.getElementById("room").value = "";
         document.getElementById("member").value = "";
         document.getElementById("hour").value = "";
-
-
     };
 
     const deleteReservations = () =>{
@@ -67,8 +60,6 @@ const Rooms = () => {
         document.getElementById("delRoomBox").value = "";
         document.getElementById("delMemBox").value = "";
         document.getElementById("delHourBox").value = "";
-
-
     };
 
     const showAllRooms = React.useMemo(()=>showRoomsName);
@@ -77,44 +68,37 @@ const Rooms = () => {
     return(
         <div>
             <h1>Room Booking</h1>
-            <br></br>
-                <button onClick={showRooms}>Display Rooms</button>
-                <br></br>
-                <br></br>
+            <body onLoad={showRooms()}>
                 <BasicTable columns={room_columns} data= {showAllRooms}/>
                 <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <label>Enter ID of room you want to book: </label>
+                <label>Enter ID of room to be booked: </label>
                 <input
                     type = "text"
                     name = "roomID"
                     id = "room"
-                    placeholder = "Enter room ID"
+                    placeholder = "enter room ID"
                     onChange={(event) => {
                         setBookRoomID(event.target.value);
                     }}
                 />
                 <br></br>
-                <label>Enter ID of the member who wants to book:</label>
+                <label>Enter member ID: </label>
                 <input
                     type = "text"
                     name = "memID"
                     id = "member"
-                    placeholder = "Enter member ID"
+                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setBookMemID(event.target.value);
                     }}
                 />
                 <br></br>
-                <label>Enter hour you want to book:</label>
+                <label>Enter hour to be booked: </label>
                 <input
                     type = "text"
                     name = "hour"
                     id = "hour"
-                    placeholder = "Enter an hour from 1-8"
+                    placeholder = "enter an hour from 1 to 8"
                     onChange={(event) => {
                         setHour(event.target.value);
                     }}
@@ -124,44 +108,44 @@ const Rooms = () => {
                 <button onClick={bookRoom}>Book Room</button>
                 <br></br>
                 <br></br>
+
                 <br></br>
+                <br></br>
+                <BasicTable columns={reserved_columns} data= {showAllReserved}/>
                 <br></br>
                 <button onClick={displayReservations}>Show All reservations</button>
                 <br></br>
                 <br></br>
-                <label>List of reservations</label>
+                <h3>List of Reservations</h3>
                 <br></br>
-                <BasicTable columns={reserved_columns} data= {showAllReserved}/>
-                <br></br>
-                <br></br>
-                <label>Enter your memberID: </label>
+                <label>Enter member ID: </label>
                 <input
                     type = "text"
                     name = "memID"
                     id = "delMemBox"
-                    placeholder = "Enter member ID"
+                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setDelMemID(event.target.value);
                     }}
                 />
                 <br></br>
-                <label>Enter the roomId you want to cancel: </label>
+                <label>Enter room ID to be cancelled: </label>
                 <input
                     type = "text"
                     name = "roomID"
                     id = "delRoomBox"
-                    placeholder = "Enter room ID"
+                    placeholder = "enter room ID"
                     onChange={(event) => {
                         setDelRoomID(event.target.value);
                     }}
                 />
                 <br></br>
-                <label>Enter the hour you want to cancel: </label>
+                <label>Enter the hour to be cancelled: </label>
                 <input
                     type = "text"
                     name = "memID"
                     id = "delHourBox"
-                    placeholder = "Enter hour"
+                    placeholder = "enter hour"
                     onChange={(event) => {
                         setDelHour(event.target.value);
                     }}
@@ -172,6 +156,7 @@ const Rooms = () => {
                 <br></br>
                 <br></br>
                 <br></br>
+            </body>
         </div>
 
     );

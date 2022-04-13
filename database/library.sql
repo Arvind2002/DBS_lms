@@ -1,4 +1,4 @@
-drop database library;
+drop database if exists library;
 create database library;
 use library;
 
@@ -13,7 +13,7 @@ create table books(
 create table locations(
     hall int default 5,
     shelf int default 1,
-    genre varchar(20) NOT NULL REFERENCES books(genre),
+    genre varchar(20) REFERENCES books(genre),
     PRIMARY KEY(hall, shelf)
 );
 

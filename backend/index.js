@@ -39,11 +39,11 @@ app.post("/update_acc", (req, res) => {
   const id = req.body.updateID;
   const name = req.body.updateName;
   const type = req.body.updateType;
-  const sqlInsert = "update members set memName = ?, typeID = ? where memID = ?";
+  const sqlInsert = "update members set memName = ?, typeID = (select typeID from acType where typeName = ?) where memID = ?";
 
   db.query(
     sqlInsert,
-    [name, type,id],
+    [name, type, id],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -99,7 +99,6 @@ app.get("/show_rooms", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(res);
         res.send(result);
       }
     }

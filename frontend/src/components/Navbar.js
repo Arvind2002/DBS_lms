@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return(
-    <header className="navbar">
+    <header className="nav">
         <nav>
             <ul>
                 <li><Link to = "/">Home</Link></li>

@@ -1,6 +1,6 @@
 export const issued_columns = [
     {
-        Header: 'member ID',
+        Header: 'Member ID',
         accessor: 'memID'
     },
     {

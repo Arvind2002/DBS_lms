@@ -60,16 +60,14 @@ const Issue = () => {
                 document.getElementById("dues").value = 0;
 
         });
-        document.getElementById("memID").value = "";
     }
 
     const showAllIssues = React.useMemo(()=>issueList);
 
     return(
         <div>
-            <h3>Issue books</h3>
-            <br></br>
-            <label>Enter your Member ID: </label>
+            <h1>Issue books</h1>
+            <label>Enter member ID: </label>
             <input
                     type = "text"
                     name = "memID"
@@ -80,12 +78,12 @@ const Issue = () => {
                     }}
                 />
             <br></br>
-            <label>Enter Book ID: </label>
+            <label>Enter book ID: </label>
             <input
                     type = "text"
                     name = "memID"
                     id = "newBook"
-                    placeholder = "enter Book ID"
+                    placeholder = "enter book ID"
                     onChange={(event) => {
                         setNewIssueBookID(event.target.value);
                     }}
@@ -95,7 +93,7 @@ const Issue = () => {
             <br></br>
             <br></br>
             <br></br>
-            <h3>Show books issued by member</h3>
+            <h3>Books Issued by a Member</h3>
             <br></br>
             <label>Enter member ID: </label>
             <input
@@ -114,27 +112,39 @@ const Issue = () => {
             <BasicTable columns={issued_columns} data= {showAllIssues}/>
             <br></br>
             <br></br>
-            <h3>Find Dues</h3>
+            <h1>Return Book</h1>
+            <label>Enter book ID: </label>
+            <input
+                type = "text"
+                name = "Dues"
+                id = "retID"
+                placeholder = "ID of book to be returned"
+                onChange={(event) => {
+                    setRetID(event.target.value);
+                }}
+            />
             <br></br>
             <br></br>
-            <label>Enter your memID: </label>
+            <button onClick={returnBook}>Return Book</button>
+            <br></br>
+            <br></br>
+            <h1>Find Dues</h1>
+            <label>Enter member ID: </label>
             <input
                     type = "text"
                     name = "memID"
                     id = "memID"
-                    placeholder = "enter member ID"
+                    placeholder = "member ID"
                     onChange={(event) => {
                         setDueMemID(event.target.value);
                     }}
                 />
-                <br></br>
                 <br></br>
             <label>Your dues: </label>
             <input
                     type = "text"
                     name = "Dues"
                     id = "dues"
-                    placeholder = "Your dues"
                     readOnly
                     onChange={(event) => {
                         setDues(event.target.value);
@@ -143,26 +153,7 @@ const Issue = () => {
                 <br></br>
                 <br></br>
                 <button onClick={calcDues}>Calculate Dues</button>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <h3>Return Book</h3>
-                <br></br>
-                <label>Enter Book ID: </label>
-                <input
-                    type = "text"
-                    name = "Dues"
-                    id = "retID"
-                    placeholder = "ID of book to return"
-                    onChange={(event) => {
-                        setRetID(event.target.value);
-                    }}
-                />
-                <br></br>
-                <br></br>
-                <button onClick={returnBook}>Return Book</button>
-
+                <br></br>    
         </div>
     );
 }

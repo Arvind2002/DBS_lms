@@ -27,7 +27,6 @@ const Books = () => {
         document.getElementById("addAuth").value = "";
         document.getElementById("addPub").value = "";
         document.getElementById("addGenre").value = "";
-
     }
 
     const searchBooks = () =>{

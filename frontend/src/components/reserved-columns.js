@@ -1,6 +1,6 @@
 export const reserved_columns = [
     {
-        Header: 'member ID',
+        Header: 'Member ID',
         accessor: 'memId'
     },
     {
@@ -12,11 +12,11 @@ export const reserved_columns = [
         accessor: 'roomName'
     },
     {
-        Header: 'hour',
+        Header: 'Hour',
         accessor: 'hour'
     },
     {
-        Header: 'start Time',
+        Header: 'Start Time',
         accessor: 'startTime'
     },
     {

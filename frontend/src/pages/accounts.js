@@ -149,7 +149,7 @@ const Accounts = () => {
 
             <div className='Update'>
                 <br></br>
-                <h3>Update account</h3>
+                <h3>Update Account</h3>
                 <label>Member ID: </label>
                 <input
                 type = "text"
@@ -172,12 +172,12 @@ const Accounts = () => {
                 }}
                 />
                 <br></br>
-                <label>New Account Type ID: </label>
+                <label>New Account Type: </label>
                 <input
                 type = "text"
                 name = "type"
                 id = "updateType"
-                placeholder = "1-platinum; 2-gold; 3-silver; 4-bronze"
+                placeholder = "platinum/gold/silver/bronze"
                 onChange={(event) => {
                     setUpdateType(event.target.value);
                 }}
