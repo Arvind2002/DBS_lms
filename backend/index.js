@@ -253,10 +253,10 @@ app.get("/show_issues",(req,res) => {
 app.get("/calc_dues",(req,res) => {
   const memID = req.query.memID;
   const bookID = req.query.bookID;
-  const query = "select members.memID, memName, title, author, dateOfIssue, (DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY)) as dateOfReturn from issued, members, books, acType where issued.bookID = books.bookID and acType.typeID = members.typeID and issued.memID = members.memID and issued.memID = ?";
+  const query = "select penatlyperweek*(ceil(DATEDIFF(curdate(),DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY))/7)) from issued,acType,members where issued.memID = members.memID and members.typeID = acType.typeID and issued.bookID = ? and issued.memID = ?";
 
   db.query(
-    query,[id],
+    query,[bookID,memID],
     (err,result) => {
       if(err) {
         console.log(err);
