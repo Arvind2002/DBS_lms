@@ -46,7 +46,7 @@ create table issued(
 );
 
 create table timings(
-    hour int,
+    hour int PRIMARY KEY,
     startTime TIME,
     endTime TIME
 );
@@ -57,6 +57,7 @@ create table reservations(
     hour int REFERENCES timings(hour),
     PRIMARY KEY(roomID, hour)
 );
+
 start transaction;
 insert into books values(1, 'hary poter', 'jkr', 'penguin','drama');
 

@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  background-color: hsla(28, 56%, 56%, 0.3);
+  background-color: #EEE2DC;
 }
 
 input {
@@ -42,16 +42,16 @@ input {
 button {
   width: 320px;
   height: 50px;
+  font-size: 14px;
+  font-weight: bold;
 
-  background-color: grey;
-  border: black;
-  color: white;
-  padding: 16px 32px;
+  background-color: #AC3B61;
+  padding: 14px 40px;
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
   margin-top: 15px;
-  color: black;
+  color: #EEE2DC;
 } 
 
 button:hover {
@@ -69,15 +69,16 @@ td, th {
   padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2;}
-tr:hover {background-color: #ddd;}
+tr:nth-child(even){background-color: #BAB2B5;}
 
 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: aqua;
-  color: black;
+  background-color: #123C69;
+  align-items: center;
+  justify-items: center;
+  color: #BAB2B5;
 }
 
 *, *::before, *::after {
@@ -89,7 +90,11 @@ th {
 nav ul {
   list-style: none;
   display: flex;
-  background-color: black;
+  background-color: #EDC7B7;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  align-items: center;
   margin-bottom: 40px;
 }
 
@@ -98,21 +103,29 @@ nav li {
 }
 
 nav ul li a {
-  color: white;
+  color: #AC3B61;
+  font-weight: bold;
+  font-size: 18px;
   text-decoration: none;
 }
 
 h1 {
   font-family: Calibri, sans-serif;
+  font-size: 28px;
   margin-bottom: 20px;
+  color: #123C69;
 }
 
 h2 {
   font-family: Calibri, sans-serif;
+  font-size: 24px;
+  color: #123C69;
 }
 
 h3 {
   font-family: Calibri, sans-serif;
+  font-size: 18px;
+  color: #123C69;
 }
 
 p {
@@ -122,8 +135,10 @@ p {
 
 li{
   font-family: Calibri, sans-serif;
+  font-size: 16px;
 }
 
 label{
   font-family: Calibri, sans-serif;
+  font-size: 16px;
 }
