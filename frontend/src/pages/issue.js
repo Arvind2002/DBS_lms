@@ -72,7 +72,6 @@ const Issue = () => {
                     type = "text"
                     name = "memID"
                     id = "newMem"
-                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setNewIssueMemID(event.target.value);
                     }}
@@ -83,7 +82,6 @@ const Issue = () => {
                     type = "text"
                     name = "memID"
                     id = "newBook"
-                    placeholder = "enter book ID"
                     onChange={(event) => {
                         setNewIssueBookID(event.target.value);
                     }}
@@ -99,7 +97,6 @@ const Issue = () => {
                     type = "text"
                     name = "memID"
                     id = "issueID"
-                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setIssueMemID(event.target.value);
                     }}
@@ -132,7 +129,6 @@ const Issue = () => {
                     type = "text"
                     name = "memID"
                     id = "memID"
-                    placeholder = "member ID"
                     onChange={(event) => {
                         setDueMemID(event.target.value);
                     }}

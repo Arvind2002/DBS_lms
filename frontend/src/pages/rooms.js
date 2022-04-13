@@ -106,15 +106,14 @@ const Rooms = () => {
                 <button onClick={bookRoom}>Book Room</button>
                 <br></br>
                 <br></br>
-
-                <br></br>
+                <h3>List of Reservations</h3>
                 <br></br>
                 <BasicTable columns={reserved_columns} data= {showAllReserved}/>
                 <br></br>
                 <button onClick={displayReservations}>Show All reservations</button>
                 <br></br>
                 <br></br>
-                <h3>List of Reservations</h3>
+                <h3>Cancel Reservation</h3>
                 <br></br>
                 <label>Member ID: </label>
                 <input
@@ -131,7 +130,6 @@ const Rooms = () => {
                     type = "text"
                     name = "roomID"
                     id = "delRoomBox"
-                    placeholder = "enter room ID"
                     onChange={(event) => {
                         setDelRoomID(event.target.value);
                     }}
@@ -142,7 +140,7 @@ const Rooms = () => {
                     type = "text"
                     name = "memID"
                     id = "delHourBox"
-                    placeholder = "enter hour"
+                    placeholder = "enter hour from 1 to 8"
                     onChange={(event) => {
                         setDelHour(event.target.value);
                     }}
