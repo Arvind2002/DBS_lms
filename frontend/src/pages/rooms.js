@@ -87,7 +87,7 @@ const Rooms = () => {
                 <br></br>
                 <br></br>
                 <br></br>
-                <label>Enter ID of the room you want to book:</label>
+                <label>Enter ID of room you want to book: </label>
                 <input
                     type = "text"
                     name = "roomID"
@@ -119,7 +119,6 @@ const Rooms = () => {
                         setHour(event.target.value);
                     }}
                 />
-
 
                 <br></br>
                 <button onClick={bookRoom}>Book Room</button>

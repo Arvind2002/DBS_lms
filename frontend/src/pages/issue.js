@@ -2,10 +2,6 @@ import '../App.css';
 import Axios from 'axios'
 import React, { useEffect, useState } from "react"
 import BasicTable from '../components/BasicTable.js'
-import {acc_columns} from '../components/acc-columns.js'
-import {book_columns} from '../components/book-columns.js'
-import {room_columns} from '../components/room-columns.js'
-import {reserved_columns} from '../components/reserved-columns.js'
 import {issued_columns} from '../components/issued-columns.js'
 
 const Issue = () => {
@@ -23,7 +19,6 @@ const Issue = () => {
             setIssueList(response.data);
         });
         document.getElementById("issueID").value = "";
-
     }
 
     const calcDues = () =>{
@@ -39,26 +34,24 @@ const Issue = () => {
             }
             else{
                 document.getElementById("dues").value = "0";
-
             }
         });
         document.getElementById("memID").value = "";
         document.getElementById("bookID").value = "";
-        
-
     }
 
     const showAllIssues = React.useMemo(()=>issueList);
 
     return(
         <div>
-            <label>Show books issued by member: </label>
+            <h3>Show books issued by member</h3>
             <br></br>
+            <label>Enter member ID: </label>
             <input
                     type = "text"
                     name = "memID"
                     id = "issueID"
-                    placeholder = "Enter member ID"
+                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setIssueMemID(event.target.value);
                     }}
@@ -78,23 +71,22 @@ const Issue = () => {
                     type = "text"
                     name = "memID"
                     id = "memID"
-                    placeholder = "Enter member ID"
+                    placeholder = "enter member ID"
                     onChange={(event) => {
                         setDueMemID(event.target.value);
                     }}
                 />
                 <br></br>
-            <label>Enter Book ID you have issued: </label>
+            <label>Enter book ID you have issued: </label>
             <input
                     type = "text"
                     name = "bookID"
                     id = "bookID"
-                    placeholder = "Enter book ID"
+                    placeholder = "enter book ID"
                     onChange={(event) => {
                         setDueBookID(event.target.value);
                     }}
                 />
-                <br></br>
                 <br></br>
             <label>Your dues: </label>
             <input
@@ -110,7 +102,6 @@ const Issue = () => {
                 <br></br>
                 <br></br>
                 <button onClick={calcDues}>Calculate Dues</button>
-
         </div>
     );
 }

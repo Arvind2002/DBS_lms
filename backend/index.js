@@ -256,7 +256,7 @@ app.get("/calc_dues",(req,res) => {
   const query = "select penatlyperweek*(ceil(DATEDIFF(curdate(),DATE_ADD(dateOfIssue, INTERVAL 7*duration DAY))/7)) from issued,acType,members where issued.memID = members.memID and members.typeID = acType.typeID and issued.bookID = ? and issued.memID = ?";
 
   db.query(
-    query,[bookID,memID],
+    query, [bookID,memID],
     (err,result) => {
       if(err) {
         console.log(err);
